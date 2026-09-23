@@ -31,6 +31,7 @@ test('shell directly creates, reads, edits and deletes files; cwd supports space
   assert.equal(readFileSync(join(cwd,'file.txt'),'utf8'),'before');
   assert.equal((await run("require('fs').writeFileSync('file.txt','after'); console.log(require('fs').readFileSync('file.txt','utf8'))")).output.trim(),'after');
   await run("require('fs').unlinkSync('file.txt')");assert.equal(existsSync(join(cwd,'file.txt')),false);
+  assert.equal(t.sessions.size, 0, 'fully completed commands must not accumulate in long-lived owners');
 }));
 test('all output is returned, failures carry exit status, commands persist between calls',()=>fixture(async(t,dir,grant)=>{
   const result=await finish(t,'a',await t.execute('a',grant,{command:nodeCommand("process.stdout.write('x'.repeat(1500000));process.stderr.write('error');process.exitCode=7"),yield_ms:0}));
@@ -67,3 +68,69 @@ test('tokens gate terminal ownership; no legacy file grants silently become full
     assert.equal((await invoke('write_stdin',{token:a.token,session_id:running.structuredContent.session_id})).isError,true);
   }finally{await s.close();rmSync(dir,{recursive:true,force:true});}
 });
+
+const unixOnly = {skip:process.platform === 'win32'};
+const alive = pid => {
+  try {process.kill(pid, 0); return true;} catch (e) {if (e.code === 'ESRCH') return false; throw e;}
+};
+async function waitFile(path) {
+  const end = Date.now() + 5000;
+  while (!existsSync(path)) {
+    assert.ok(Date.now() < end, 'child did not report its PID');
+    await new Promise(resolve => setTimeout(resolve, 20));
+  }
+  return Number(readFileSync(path, 'utf8'));
+}
+for (const tty of [true, false]) test(`stop kills background child, tty=${tty}`, unixOnly, () => fixture(async(t, dir, grant) => {
+  let pid;
+  try {
+    await t.execute('a', grant, {command:"trap '' HUP; sleep 30 & echo $! > child.pid; wait", shell:'/bin/sh', tty, yield_ms:0});
+    pid = await waitFile(join(dir, 'child.pid'));
+    await t.stop('a');
+    const deadline = Date.now() + 1000;
+    while (alive(pid) && Date.now() < deadline) await new Promise(resolve => setTimeout(resolve, 20));
+    assert.equal(alive(pid), false, 'background child survived stop');
+  } finally {if (pid && alive(pid)) process.kill(pid, 'SIGKILL');}
+}));
+test('stop kills detached descendant that holds output pipes and returns promptly', unixOnly, () => fixture(async(t, dir, grant) => {
+  let pid;
+  try {
+    const code = "const c=require('child_process').spawn(process.execPath,['-e','setInterval(()=>{},1000)'],{detached:true,stdio:'inherit'});require('fs').writeFileSync('child.pid',String(c.pid));setInterval(()=>{},1000)";
+    await t.execute('a', grant, {command:nodeCommand(code), yield_ms:0});
+    pid = await waitFile(join(dir, 'child.pid'));
+    const started = Date.now();
+    await t.stop('a');
+    assert.ok(Date.now() - started < 5000, 'stop exceeded its cleanup deadline');
+    const deadline = Date.now() + 1000;
+    while (alive(pid) && Date.now() < deadline) await new Promise(resolve => setTimeout(resolve, 20));
+    assert.equal(alive(pid), false, 'detached child survived stop');
+  } finally {if (pid && alive(pid)) process.kill(pid, 'SIGKILL');}
+}));
+test('stop cleans a background group after its shell has exited', unixOnly, () => fixture(async(t, dir, grant) => {
+  let pid;
+  try {
+    await t.execute('a', grant, {command:"sleep 30 </dev/null >/dev/null 2>&1 & echo $! > child.pid", shell:'/bin/sh'});
+    pid = await waitFile(join(dir, 'child.pid'));
+    await t.stop('a');
+    const deadline = Date.now() + 1000;
+    while (alive(pid) && Date.now() < deadline) await new Promise(resolve => setTimeout(resolve, 20));
+    assert.equal(alive(pid), false);
+  } finally {if (pid && alive(pid)) process.kill(pid, 'SIGKILL');}
+}));
+test('stop reports unverifiable cleanup instead of hanging on an already orphaned pipe holder', unixOnly, () => fixture(async(t, dir, grant) => {
+  let pid;
+  try {
+    const code = "const c=require('child_process').spawn(process.execPath,['-e','setInterval(()=>{},1000)'],{detached:true,stdio:'inherit'});require('fs').writeFileSync('child.pid',String(c.pid));c.unref()";
+    await t.execute('a', grant, {command:nodeCommand(code), yield_ms:0});
+    pid = await waitFile(join(dir, 'child.pid'));
+    // Let the ancestry disappear. Its inherited pipes keep Node's close event pending.
+    await new Promise(resolve => setTimeout(resolve, 200));
+    const started = Date.now();
+    await assert.rejects(t.stop('a'), /cleanup could not be verified/);
+    assert.ok(Date.now() - started < 5000, 'stop hung while waiting for inherited pipes');
+    assert.equal(alive(pid), true, 'an unowned process must not be guessed and killed');
+  } finally {
+    if (pid && alive(pid)) process.kill(pid, 'SIGKILL');
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
+}));
