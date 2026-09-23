@@ -22,51 +22,28 @@ Do not require a new tunnel account or domain.
 
 ## Use
 
-### Delegate with Codex — `m` / `h` / `xh` / `p`
+### Delegate a task
 
-Codex sends the task to WebGPT and collects the result. Choose a mode:
-
-| Mode | Long alias | Reasoning level |
-| --- | --- | --- |
-| `m` | `medium` | Medium |
-| `h` | `high` | High |
-| `xh` | `xhigh` | Extra High (default) |
-| `p` | `pro` | Pro |
-
-Medium appears as **중간** in the Korean UI; some UI versions label it Standard/표준.
-
-Use `webgpt <mode> <task>`. For example:
+Tell Codex:
 
 ```text
-webgpt h Implement and test the CSV export described in this project's issue.
+webgpt h Implement and test CSV export.
 ```
 
-Omit the mode to use Extra High. Short and long aliases work the same way.
+| Mode | Level |
+| --- | --- |
+| `m` | Medium |
+| `h` | High |
+| `xh` | Extra High (default) |
+| `p` | Pro |
 
-Your requested workflow takes priority. For example:
+### Work directly in ChatGPT
 
-```text
-Use webgpt xh to implement and test the API. While it works, you implement the UI.
-```
-
-Without other instructions, Codex delegates a bounded task with its tests, waits quietly,
-and reviews the saved result once. Partial results preserve completed work for continuation.
-You can request progress checks, same-chat follow-ups, or keeping the task chat.
-
-### Use ChatGPT yourself — `open`
-
-Open the current project:
+Tell Codex:
 
 ```text
 webgpt open
 ```
 
-Or specify another project:
-
-```text
-webgpt open /path/to/project
-```
-
-Open a blank ChatGPT tab connected to your project's terminal. You start the conversation,
-run the work and close the chat; Codex only sets up the connection.
-Terminal access expires after 24 hours without use; each use resets the timer.
+Opens ChatGPT with terminal access to the current project.
+For another project, use `webgpt open /path/to/project`.
