@@ -1,6 +1,6 @@
 ---
 name: webgpt
-description: Delegate work to signed-in Web ChatGPT when the user requests WebGPT (xh/xhigh, h/high, m/medium or p/pro), or open a user-controlled project terminal chat with webgpt open.
+description: Delegate work to signed-in Web ChatGPT when the user requests WebGPT (m/medium, h/high, xh/xhigh or p/pro), or open a user-controlled project terminal chat with webgpt open.
 ---
 
 # WebGPT
@@ -52,8 +52,8 @@ var sent = await dispatch(tab, prompt, 'xh', {
 });
 ```
 
-Modes: `xh|xhigh` = Extra High (default), `h|high` = High, `m|medium` = Medium
-(UI may label this Standard/표준), `p|pro` = Pro. Pass any of these aliases to `dispatch`.
+Modes: `m|medium` = Medium (중간; also Standard/표준), `h|high` = High,
+`xh|xhigh` = Extra High (default), `p|pro` = Pro. Pass any of these aliases to `dispatch`.
 Omit `startup` for browser-only work. The helper verifies mode, sends once and checks startup.
 Choose **Always allow / 항상 허용** for authorized WebGPT permission prompts whenever offered;
 this is the helper default. Only an explicit narrower user request uses

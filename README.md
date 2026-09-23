@@ -22,20 +22,26 @@ Do not require a new tunnel account or domain.
 
 ## Use
 
-### Delegate with Codex — `xh` / `h` / `m` / `p`
+### Delegate with Codex — `m` / `h` / `xh` / `p`
 
-Codex sends the task to WebGPT and collects the result. Tell Codex:
+Codex sends the task to WebGPT and collects the result. Choose a mode:
+
+| Mode | Long alias | Reasoning level |
+| --- | --- | --- |
+| `m` | `medium` | Medium |
+| `h` | `high` | High |
+| `xh` | `xhigh` | Extra High (default) |
+| `p` | `pro` | Pro |
+
+Medium appears as **중간** in the Korean UI; some UI versions label it Standard/표준.
+
+Use `webgpt <mode> <task>`. For example:
 
 ```text
-Use webgpt xh to implement and test the CSV export described in this project's issue.
+webgpt h Implement and test the CSV export described in this project's issue.
 ```
 
-```text
-webgpt p Research this topic and summarize the findings.
-```
-
-`xh` = Extra High (default) · `h` = High · `m` = Medium · `p` = Pro.
-Long aliases: `xhigh`, `high`, `medium`, `pro`. Medium may appear as Standard/표준 in the UI.
+Omit the mode to use Extra High. Short and long aliases work the same way.
 
 Your requested workflow takes priority. For example:
 
