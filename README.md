@@ -27,7 +27,11 @@ Do not require a new tunnel account or domain.
 Tell Codex:
 
 ```text
-webgpt h Implement and test CSV export.
+Use webgpt xh as subagents to develop this project's planned features in parallel.
+```
+
+```text
+webgpt p Research this topic and summarize the findings.
 ```
 
 | Mode | Level |
@@ -46,4 +50,9 @@ webgpt open
 ```
 
 Opens ChatGPT with terminal access to the current project.
-For another project, use `webgpt open /path/to/project`.
+
+Or specify another project:
+
+```text
+webgpt open /path/to/project
+```
