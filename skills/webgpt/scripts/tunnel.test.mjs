@@ -51,7 +51,8 @@ test('lifecycle clears stale origin, publishes private running state and never c
     f.child.stdout.write('irrelevant secret log\n');
     f.child.stderr.write('INF | https://fresh-');f.child.stderr.write('origin.trycloudflare.com |\n');
     assert.deepEqual(f.state(),{version:1,status:'running',origin:'https://fresh-origin.trycloudflare.com',pid:123});
-    assert.equal(statSync(join(f.dataDir,'tunnel.json')).mode&0o777,0o600);
+    // Windows does not expose POSIX owner/group permission bits.
+    if(process.platform!=='win32')assert.equal(statSync(join(f.dataDir,'tunnel.json')).mode&0o777,0o600);
     assert.equal(readFileSync(configPath,'utf8'),original);
     assert.deepEqual(states,[{status:'starting'},{status:'running'}]);
     f.child.emit('exit',0,null);assert.deepEqual(await tunnel.done,{code:0,signal:null});

@@ -30,9 +30,11 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           package-manager-cache: false
-      # Node discovers *.test.mjs itself, without shell-dependent glob expansion.
+      # Discover product tests without shell-dependent glob expansion.
+      # validation/ contains intentionally unfinished delegation benchmark fixtures.
       # These tests use temporary files and local HTTP; no ChatGPT login is needed.
       - name: Install terminal dependency
         run: npm ci --prefix skills/webgpt
       - name: Run tests
+        working-directory: skills/webgpt
         run: node --test --test-reporter=tap
