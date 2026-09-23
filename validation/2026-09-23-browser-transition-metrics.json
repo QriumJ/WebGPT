@@ -1,0 +1,99 @@
+{
+  "measurement": "Observed CLI counters, not quota usage. Different prompts and intermediate code versions; not a controlled cost A/B.",
+  "runs": [
+    {
+      "case": "followup",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "low",
+      "usage": {
+        "input_tokens": 323809,
+        "cached_input_tokens": 270592,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2349,
+        "reasoning_output_tokens": 834
+      },
+      "completed_items": {
+        "agent_message": 5,
+        "mcp_tool_call": 8,
+        "file_change": 1,
+        "command_execution": 1
+      },
+      "tool_operations": 10,
+      "prompt_sha256": "67b427420e9dbdb0caaa582109057b7e36fe00f46e1c545abedad64388500905",
+      "helper_sha256": "cdc4d69091fd04e5974727e86ed2468216293fffaa570b2979ed77ea74654492",
+      "uncached_input_tokens": 53217,
+      "outcome": "PASS; draft URL refreshed by CLI before follow-up"
+    },
+    {
+      "case": "draft-transition",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "low",
+      "usage": {
+        "input_tokens": 681162,
+        "cached_input_tokens": 642048,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4628,
+        "reasoning_output_tokens": 1679
+      },
+      "completed_items": {
+        "agent_message": 4,
+        "mcp_tool_call": 20,
+        "file_change": 1
+      },
+      "tool_operations": 21,
+      "prompt_sha256": "8b00e7777b9c56a400fa2e3d30e8cb829085cb3be6a0331c8f180132caba5539",
+      "helper_sha256": "10ab636b41c31c91cbb8e0929adc2e6e3ed682d331f45f3366fb489689d9f845",
+      "uncached_input_tokens": 39114,
+      "outcome": "FAIL; first generation stalled, second submission unconfirmed; cleaned in recovery"
+    },
+    {
+      "case": "draft-transition-final",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "low",
+      "usage": {
+        "input_tokens": 427045,
+        "cached_input_tokens": 403200,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2872,
+        "reasoning_output_tokens": 483
+      },
+      "completed_items": {
+        "agent_message": 4,
+        "mcp_tool_call": 8,
+        "command_execution": 3,
+        "file_change": 2
+      },
+      "tool_operations": 13,
+      "prompt_sha256": "6a4d6b1442c0f0de634e1ff22dec0ed8032fa83e01af85d9465ce88a70b52856",
+      "helper_sha256": "383ae96a258992b176f13bacc5b45821a0a128e7a73c9844a20b8d29ebe818cf",
+      "uncached_input_tokens": 23845,
+      "outcome": "PASS; original draft URL passed unchanged; two exact replies; helper cleanup"
+    }
+  ],
+  "intermediate_failure_cleanup": {
+    "additional_parent_instructions": 1,
+    "cumulative_usage_after_recovery": {
+      "input_tokens": 1137385,
+      "cached_input_tokens": 1081600,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 6930,
+      "reasoning_output_tokens": 2171
+    },
+    "recovery_delta": {
+      "input_tokens": 456223,
+      "cached_input_tokens": 439552,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2302,
+      "reasoning_output_tokens": 492
+    },
+    "outcome": "deleted_and_closed"
+  },
+  "final_sha256": {
+    "skills/webgpt/scripts/browser.mjs": "383ae96a258992b176f13bacc5b45821a0a128e7a73c9844a20b8d29ebe818cf",
+    "skills/webgpt/SKILL.md": "1588739fc83bd04859b731055fdf682873297f01996cba51744374457a838eb8"
+  },
+  "tests": {
+    "passed": 55,
+    "failed": 0
+  }
+}

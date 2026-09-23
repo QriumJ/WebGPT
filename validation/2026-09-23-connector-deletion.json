@@ -1,0 +1,20 @@
+{
+  "status": "five_deleted_one_catalog_entry_blocked",
+  "method": "Legacy Connectors settings draft detail menu: Delete",
+  "preservedRegistrationId": "plugin_asdk_app_6ab350f38a248191a3ad3f5a40f0a2b2",
+  "verifiedDeletedRegistrationIds": [
+    "plugin_asdk_app_6ab2c04e79dc8191b39e88e173ec4207",
+    "plugin_asdk_app_6ab3181543b08191aafb3e225defa05e",
+    "plugin_asdk_app_6ab329f192648191887194b1bc5c0412",
+    "plugin_asdk_app_6ab33dab8760819196154468850d4e5c",
+    "plugin_asdk_app_6ab340531d388191a85f63964a4e335e"
+  ],
+  "remainingRegistrationId": "plugin_asdk_app_6aa891dd53ec81919eb0c87933df4165",
+  "remainingEvidence": {
+    "legacyDraftAbsent": true,
+    "connectManagementError": "커넥터를 불러올 수 없습니다",
+    "temporaryInstallRemoved": true
+  },
+  "legacySettingsEntry": "https://chatgpt.com/#settings/Connectors/asdk_app_6aa891dd53ec81919eb0c87933df4165",
+  "note": "The unmatched Connectors subpath opens the legacy Apps settings; draft detail overflow Delete removes definitions, whereas Plugins Remove only uninstalls."
+}

@@ -1,0 +1,80 @@
+{
+  "SKILL.md": {
+    "beforeWords": 1156,
+    "afterWords": 724,
+    "reductionPercent": 37.4
+  },
+  "references/workspace.md": {
+    "beforeWords": 399,
+    "afterWords": 261,
+    "reductionPercent": 34.6
+  },
+  "normalPathTotal": {
+    "beforeWords": 1555,
+    "afterWords": 985,
+    "reductionPercent": 36.7
+  },
+  "trials": {
+    "baseline": {
+      "threadId": "01a0ccaa-613f-7530-9ac2-89491868591d",
+      "sessionElapsedSeconds": 177.831,
+      "completedToolOperations": 15,
+      "uncachedInputTokens": 41819,
+      "usage": {
+        "input_tokens": 835163,
+        "cached_input_tokens": 793344,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2220,
+        "reasoning_output_tokens": 195
+      },
+      "prompt": {
+        "charactersWithActualToken": 514,
+        "wordsWithActualToken": 64,
+        "charactersWithTokenPlaceholder": 490,
+        "wordsWithTokenPlaceholder": 64,
+        "contentOmitted": true
+      }
+    },
+    "candidate": {
+      "threadId": "01a0ccad-bc50-75a0-8c5c-e01212796e32",
+      "sessionElapsedSeconds": 131.624,
+      "completedToolOperations": 14,
+      "uncachedInputTokens": 30208,
+      "usage": {
+        "input_tokens": 362624,
+        "cached_input_tokens": 332416,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1495,
+        "reasoning_output_tokens": 97
+      },
+      "prompt": {
+        "charactersWithActualToken": 620,
+        "wordsWithActualToken": 82,
+        "charactersWithTokenPlaceholder": 596,
+        "wordsWithTokenPlaceholder": 82,
+        "contentOmitted": true
+      }
+    },
+    "candidate-final": {
+      "threadId": "01a0ccb1-f430-75e0-adc9-f31779e2748a",
+      "sessionElapsedSeconds": 143.305,
+      "completedToolOperations": 18,
+      "uncachedInputTokens": 39295,
+      "usage": {
+        "input_tokens": 544383,
+        "cached_input_tokens": 505088,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1680,
+        "reasoning_output_tokens": 84
+      },
+      "prompt": {
+        "charactersWithActualToken": 473,
+        "wordsWithActualToken": 62,
+        "charactersWithTokenPlaceholder": 449,
+        "wordsWithTokenPlaceholder": 62,
+        "referencesExistingReadme": true,
+        "contentOmitted": true
+      }
+    }
+  }
+}

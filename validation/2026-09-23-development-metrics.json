@@ -1,0 +1,254 @@
+{
+  "task_sha256": "727074051717d1aae414c72d23bfea0e847903957f5b949733c5512288d61679",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "low",
+  "seed_files": {
+    "package.json": "7032e999427b48d9dd12432221a589c9f2bf61000fedd346e482b5b515c84db4",
+    "TASK.md": "727074051717d1aae414c72d23bfea0e847903957f5b949733c5512288d61679",
+    "test/summary.test.mjs": "5d0a6f8dc4bfb6a1261ae3de0997cbdd6dbc8cf023024c5b9071ac05e520d8a7",
+    "src/summary.mjs": "10b1466dab802827e79167beb46a17d7337ab591fca85e79e9ff34711ccb3b01",
+    "src/cli.mjs": "de7f448d7b1af2f48bd0b7ef84a7879cde5726b6aa6beacaf839b2683e0aa3f5"
+  },
+  "direct_independent_tests": {
+    "passed": 12,
+    "failed": 0,
+    "results": [
+      {
+        "name": "blank and CRLF physical line numbers",
+        "status": "PASS"
+      },
+      {
+        "name": "aggregation sorting and nearest-rank p95",
+        "status": "PASS"
+      },
+      {
+        "name": "deduplicate before range filter and keep first",
+        "status": "PASS"
+      },
+      {
+        "name": "inclusive lower exclusive upper and timezone instants",
+        "status": "PASS"
+      },
+      {
+        "name": "UTC day grouping",
+        "status": "PASS"
+      },
+      {
+        "name": "invalid calendar timestamps and range validation",
+        "status": "PASS"
+      },
+      {
+        "name": "record types and all required fields",
+        "status": "PASS"
+      },
+      {
+        "name": "validate duplicate and filtered records",
+        "status": "PASS"
+      },
+      {
+        "name": "options are not mutated",
+        "status": "PASS"
+      },
+      {
+        "name": "CLI stdin successful JSON and newline",
+        "status": "PASS"
+      },
+      {
+        "name": "CLI gzip file and date options",
+        "status": "PASS"
+      },
+      {
+        "name": "CLI failures exit 2 without stdout or stack trace",
+        "status": "PASS"
+      }
+    ]
+  },
+  "helper_tests": {
+    "pass": 62,
+    "fail": 0
+  },
+  "direct_task_spec_unchanged": true,
+  "evaluator_initial_sha256": "9f5d85c5739fc221a331de8ad947b3110c7e208c4de1de889f12686db8ab34ef",
+  "evaluator_sha256": "5952deb78c73ff7cae04269f40f04a5bcadc574991a68fa7a753fd3d0a8a8a9c",
+  "oracle_correction": "Invalid-record assertions now also require the specified physical line number; both implementations were reevaluated. This prevents Not implemented from passing a negative-only group.",
+  "delegated_independent_tests": {
+    "passed": 0,
+    "failed": 12,
+    "results": [
+      {
+        "name": "blank and CRLF physical line numbers",
+        "status": "FAIL",
+        "error": "Not implemented"
+      },
+      {
+        "name": "aggregation sorting and nearest-rank p95",
+        "status": "FAIL",
+        "error": "Not implemented"
+      },
+      {
+        "name": "deduplicate before range filter and keep first",
+        "status": "FAIL",
+        "error": "Not implemented"
+      },
+      {
+        "name": "inclusive lower exclusive upper and timezone instants",
+        "status": "FAIL",
+        "error": "Not implemented"
+      },
+      {
+        "name": "UTC day grouping",
+        "status": "FAIL",
+        "error": "Not implemented"
+      },
+      {
+        "name": "invalid calendar timestamps and range validation",
+        "status": "FAIL",
+        "error": "Not implemented"
+      },
+      {
+        "name": "record types and all required fields",
+        "status": "FAIL",
+        "error": "The input did not match the regular expression /\\b1\\b/. Input:\n\n'Error: Not implemented'\n"
+      },
+      {
+        "name": "validate duplicate and filtered records",
+        "status": "FAIL",
+        "error": "The input did not match the regular expression /2/. Input:\n\n'Error: Not implemented'\n"
+      },
+      {
+        "name": "options are not mutated",
+        "status": "FAIL",
+        "error": "Not implemented"
+      },
+      {
+        "name": "CLI stdin successful JSON and newline",
+        "status": "FAIL",
+        "error": "The expression evaluated to a falsy value:\n\n  assert.ok(p.stdout.endsWith('\\n'))\n"
+      },
+      {
+        "name": "CLI gzip file and date options",
+        "status": "FAIL",
+        "error": "Unexpected end of JSON input"
+      },
+      {
+        "name": "CLI failures exit 2 without stdout or stack trace",
+        "status": "FAIL",
+        "error": "[\"--bad\"]\n\n0 !== 2\n"
+      }
+    ]
+  },
+  "delegated_seed_unchanged": true,
+  "runs": [
+    {
+      "variant": "direct",
+      "usage_cumulative": {
+        "input_tokens": 171933,
+        "cached_input_tokens": 132352,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8934,
+        "reasoning_output_tokens": 873
+      },
+      "uncached_input_tokens": 39581,
+      "tool_operations": 6,
+      "completed_items": {
+        "agent_message": 4,
+        "command_execution": 4,
+        "file_change": 2
+      },
+      "verified_turn_settings": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        }
+      ]
+    },
+    {
+      "variant": "delegated",
+      "usage_cumulative": {
+        "input_tokens": 3411439,
+        "cached_input_tokens": 3299712,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 8342,
+        "reasoning_output_tokens": 1901
+      },
+      "uncached_input_tokens": 111727,
+      "tool_operations": 33,
+      "completed_items": {
+        "agent_message": 5,
+        "command_execution": 6,
+        "mcp_tool_call": 23,
+        "file_change": 4
+      },
+      "verified_turn_settings": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        }
+      ]
+    },
+    {
+      "variant": "setup",
+      "usage_cumulative": {
+        "input_tokens": 2686471,
+        "cached_input_tokens": 2513152,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 6726,
+        "reasoning_output_tokens": 1769
+      },
+      "uncached_input_tokens": 173319,
+      "tool_operations": 43,
+      "completed_items": {
+        "agent_message": 7,
+        "command_execution": 3,
+        "mcp_tool_call": 37,
+        "file_change": 3
+      },
+      "verified_turn_settings": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        }
+      ]
+    }
+  ],
+  "delegated_extra_parent_instructions": 2,
+  "delegated_status": "failed; NOT_RUN; collected; chat deleted",
+  "block_reason": "UNKNOWN raw tool reason; WebGPT reported terminal operations blocked before execution",
+  "source_sha256": {
+    "skills/webgpt/scripts/browser.mjs": "89a10f96b194444abee4807a957fc25319a1d95ef30ced8912ddc3ca95f74664",
+    "skills/webgpt/SKILL.md": "2ad4ca93392d3757ff625ef2a3277fe676178aa0dd776f0c855a12e0d2dca895",
+    "skills/webgpt/references/browser-reply.md": "3bab30446166d406c4dba95e4488f2ec2066d90dda56d6ea0f639fc9bd0bfa31"
+  },
+  "cleanup": {
+    "test_chats_deleted": true,
+    "owned_tabs_closed": true,
+    "test_connector_removed": true,
+    "worker_stopped": true,
+    "tunnel_stopped": true,
+    "ports_43137_43139_no_listeners": true,
+    "benchmark_projects_and_private_evidence_retained": true,
+    "default_configuration_changed": false
+  },
+  "limits": [
+    "One small development sample, not a general quota benchmark.",
+    "Delegated implementation did not run; reported execution rejection reason is UNKNOWN.",
+    "Setup lifecycle is separate from the workload and parent setup/evaluation token use is excluded.",
+    "Final startup permission-check guidance was added after the failed run; not validated by a successful new development run."
+  ]
+}

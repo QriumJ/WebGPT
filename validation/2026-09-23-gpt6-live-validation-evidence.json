@@ -1,0 +1,173 @@
+{
+  "recovery": {
+    "scope": "live origin repair and terminal smoke",
+    "thread": "01a0cc25-a1a3-7e22-a9d7-156d3dc41843",
+    "model": "gpt-6-sol",
+    "effort": "low",
+    "freshSession": true,
+    "originChangeGuard": "PASS",
+    "replacementSchemas": "PASS",
+    "terminalOutput": "RECOVERY_GPT6_OK",
+    "exitCode": 0,
+    "integrity": "verified",
+    "collected": true,
+    "permanentCleanup": "deleted_and_closed",
+    "chatId": "6ab33e3f-2674-83ee-bd22-af358129020d",
+    "registrationId": "plugin_asdk_app_6ab33dab8760819196154468850d4e5c",
+    "userSteeringDuringRun": "Always allow instead of conversation-scoped authorization",
+    "parentIntervention": true,
+    "uninterruptedCliPass": false
+  },
+  "install": {
+    "installation_type": "fresh isolated WebGPT profile using existing Node, cloudflared, signed-in Chrome and account",
+    "installedContentSha256": "d6aa67430acb29b37e0ad519c29e28ad1ef5530337ab4672e1d1a86beca56e8e",
+    "workerService": "com.local.webgpt.installtest.gpt6-hwq0ep6c.worker",
+    "tunnelService": "com.local.webgpt.installtest.gpt6-hwq0ep6c.tunnel",
+    "connectorName": "WebGPT Worker Install Test gpt6-hwq0ep6c",
+    "connectorRegistrationId": "asdk_app_6ab340531d388191a85f63964a4e335e",
+    "browser": "Chrome existing signed-in profile",
+    "chatSurface": "Chat",
+    "mode": "Extra High",
+    "verifiedChatSelection": true,
+    "smokeTaskId": "96186be5-1525-44af-9b76-ca2bc2869717",
+    "smokeTaskState": "cancelled after submit_result safety blocks",
+    "savedResult": "FAIL",
+    "chatCleanup": "PREPARED_PENDING_ACTION_TIME_CONFIRMATION",
+    "verification": {
+      "npmCi": "PASS",
+      "npmTest": "PASS 131/131",
+      "workerHealth": "PASS",
+      "plainMcpRejected": "PASS 404",
+      "connectorDiscovery": "PASS five expected tools",
+      "browserTerminal": "PASS reported output INSTALL_GPT6_OK and exit 0",
+      "workerSavedResult": "FAIL safety layer blocked submit_result three times"
+    },
+    "extraUserInputs": [],
+    "controllerInterventions": [
+      "Selected Always allow for the exact WebGPT Worker terminal permission."
+    ],
+    "nextAction": "After action-time confirmation, confirmDeleteAndClose using the prepared receipt for the exact owned chat; preserve services and connector.",
+    "verifiedChatUrl": "[REDACTED]",
+    "ownedTabId": "[REDACTED]",
+    "configPath": "[ISOLATED_PROFILE]/config.json",
+    "dataDir": "[ISOLATED_PROFILE]/data",
+    "candidatePath": "[LOCAL_CANDIDATE]/webgpt",
+    "installedPath": "[LOCAL_INSTALL]/webgpt",
+    "finalCleanup": {
+      "status": "PERMANENTLY_DELETED_AND_CLOSED",
+      "verifiedBy": "parent through documented browser API and ChatGPT deleted-conversation notice",
+      "userConfirmation": "all three exact prepared targets confirmed"
+    }
+  },
+  "result-diagnostic": {
+    "taskId": "30fd69cb-b030-42e9-8bff-4469d502961b",
+    "worker": "WebGPT Worker Install Test gpt6-hwq0ep6c",
+    "registrationId": "plugin_asdk_app_6ab340531d388191a85f63964a4e335e",
+    "terminalAccess": false,
+    "inputs": {},
+    "backupMs": 30000,
+    "chatSurface": "Chat",
+    "mode": "Extra High",
+    "dispatchStatus": "submitted",
+    "permission": "not_observed",
+    "dueCheck": {
+      "replyStatus": "in_progress",
+      "observedToolRequest": "completed"
+    },
+    "controller": {
+      "status": "completed",
+      "result": "RESULT_CHANNEL_GPT6_OK",
+      "sha256": "e88b369cdaffc9939cdd65d8555ee461464c2952b845003c1d9c51d545fe8cfe",
+      "integrity": "verified",
+      "collected": true
+    },
+    "cleanup": {
+      "status": "deletion_prepared",
+      "receiptFile": "deletion-receipt.json",
+      "tabPreserved": true,
+      "deletion": "NOT_RUN",
+      "tabClose": "NOT_RUN"
+    },
+    "finalCleanup": {
+      "status": "PERMANENTLY_DELETED_AND_CLOSED",
+      "verifiedBy": "parent through documented browser API and ChatGPT deleted-conversation notice",
+      "userConfirmation": "all three exact prepared targets confirmed"
+    }
+  },
+  "smoke-retest": {
+    "overall": "FAIL",
+    "taskId": "c7ec57cb-cc6d-4477-a9c2-d09011639551",
+    "backupMs": 30000,
+    "surface": "Chat",
+    "mode": "Extra High",
+    "chat": {
+      "title": "Smoke retest result",
+      "tabId": "1451557587",
+      "url": "https://chatgpt.com/c/6ab34338-8f64-83e8-af70-4263bbdc6168"
+    },
+    "dispatch": "submitted",
+    "terminal": {
+      "status": "PASS_REPORTED_BY_CHAT",
+      "stdout": "RETEST_GPT6_OK",
+      "exitCode": 0
+    },
+    "workerResult": {
+      "status": "FAIL",
+      "reason": "OpenAI blocked the submit_result tool request because it could not determine the request security status",
+      "saved": false,
+      "collection": "NOT_RUN",
+      "integrityVerification": "NOT_RUN",
+      "taskCancelled": true
+    },
+    "permissions": {
+      "newPromptObserved": false,
+      "newGrantSelected": false
+    },
+    "cleanup": {
+      "status": "PREPARED_PENDING_ACTION_TIME_CONFIRMATION",
+      "receiptFile": ".retest-delete-receipt.json",
+      "unrelatedDialogsPreserved": true
+    },
+    "finalCleanup": {
+      "status": "PERMANENTLY_DELETED_AND_CLOSED",
+      "verifiedBy": "parent through documented browser API and ChatGPT deleted-conversation notice",
+      "userConfirmation": "all three exact prepared targets confirmed"
+    }
+  },
+  "cleanup-recheck": {
+    "surface": "Chat",
+    "mode": "Extra High",
+    "prompt": "Reply CLEANUP_OK only.",
+    "reply": "CLEANUP_OK",
+    "reply_status": "completed",
+    "owned_conversation_id": "6ab34518-1da0-83e8-b939-13de994bb4e1",
+    "owned_tab_id": "1451557617",
+    "deletion_status": "deleted_and_closed",
+    "additional_approval_question": false,
+    "tool_rejection": false
+  },
+  "cleanupFinal": {
+    "authorization": "User explicitly confirmed all three exact prepared test conversations for permanent deletion.",
+    "status": "PASS",
+    "targets": [
+      {
+        "title": "Run Command And Report",
+        "serverDeletionNotice": true,
+        "tabClosed": true
+      },
+      {
+        "title": "Worker Diagnostic Test",
+        "serverDeletionNotice": true,
+        "tabClosed": true
+      },
+      {
+        "title": "Smoke retest result",
+        "serverDeletionNotice": true,
+        "tabClosed": true
+      }
+    ],
+    "firstTarget": "Already absent when selected; direct URL inspection showed ChatGPT deletion notice.",
+    "otherTargets": "Parent confirmed prepared dialogs; direct URL rechecks showed ChatGPT deletion notices.",
+    "verificationTabsClosed": true
+  }
+}

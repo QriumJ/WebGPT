@@ -1,0 +1,77 @@
+{
+  "trial": "candidate",
+  "threadId": "01a0ccad-bc50-75a0-8c5c-e01212796e32",
+  "modelContexts": [
+    {
+      "model": "gpt-6-sol",
+      "effort": "low"
+    }
+  ],
+  "startedAt": "2026-09-23T05:12:13.424Z",
+  "endedAt": "2026-09-23T05:14:25.048Z",
+  "sessionElapsedSeconds": 131.624,
+  "usage": {
+    "input_tokens": 362624,
+    "cached_input_tokens": 332416,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1495,
+    "reasoning_output_tokens": 97
+  },
+  "uncachedInputTokens": 30208,
+  "completedToolOperations": 14,
+  "toolCounts": {
+    "command_execution": 10,
+    "mcp_tool_call": 4
+  },
+  "failedCommandOperations": 1,
+  "prompt": {
+    "charactersWithActualToken": 620,
+    "wordsWithActualToken": 82,
+    "charactersWithTokenPlaceholder": 596,
+    "wordsWithTokenPlaceholder": 82,
+    "contentOmitted": true
+  },
+  "flow": {
+    "dispatchCalls": 1,
+    "submitted": true,
+    "chatComposerObserved": true,
+    "mode": "xh",
+    "modeEvidence": "dispatch xh returned submitted; helper enforces mode",
+    "setupReferenceRead": false,
+    "pluginsSettingsRevisit": false,
+    "existingConnectorSelected": true,
+    "sameConnectorAsBaseline": true,
+    "finishCalls": 1,
+    "resultStatus": "completed",
+    "integrity": "verified",
+    "collected": true,
+    "artifactHashIndependentlyVerified": true,
+    "cleanup": "deleted_and_closed",
+    "cleanupReturnedOpenTabs": []
+  },
+  "fixtureReview": {
+    "requirementsReviewed": true,
+    "implementationMatchesRequirements": true,
+    "cliIndependentTestCommand": "npm test",
+    "passed": 3,
+    "failed": 0,
+    "additionalReviewerTestRun": false
+  },
+  "observations": [
+    "Saved finish evidence already stated npm test PASS, 3 tests, 0 failures and matching delivered files. No documented gap, conflicting evidence or integration change justified CLI rereading the same artifact and rerunning npm test. This is redundant work under both baseline and candidate instructions.",
+    "CLI read config.json before setup.json despite identity guidance. The config in this trial contains runtime settings and public forwarding origin, not a controller key; baseline description calling configuration secrets was broader than observed.",
+    "CLI git status failed because fixture is not a repository.",
+    "Candidate assignment grew from 514 to 620 characters and from 64 to 82 words; shorter skill instructions did not shorten this sampled outgoing assignment.",
+    "One noisy A/B sample cannot establish quota savings or causally attribute usage changes to compression."
+  ],
+  "comparison": {
+    "sameModelAndEffort": true,
+    "sameTaskScope": true,
+    "sameModeAndConnector": true,
+    "sameSuccessfulResultAndCleanup": true,
+    "toolOperationsDelta": -1,
+    "uncachedInputTokensDelta": -11611,
+    "outputTokensDelta": -725
+  },
+  "redaction": "No task tokens, private URLs, raw prompts, sidebar text or configuration values included."
+}

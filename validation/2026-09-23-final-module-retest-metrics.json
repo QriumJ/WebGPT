@@ -1,0 +1,178 @@
+{
+  "thread": "01a0cbff-e252-7471-92ca-4fd8c5e0370d",
+  "evidenceRoot": "/var/folders/nm/5t94y71s61x7r_trftjmltvh0000gn/T/webgpt-final-module-i9_nj4b0",
+  "modelProof": [
+    {
+      "model": "gpt-5.6-sol",
+      "effort": "low"
+    }
+  ],
+  "usage": {
+    "input_tokens": 768937,
+    "cached_input_tokens": 723072,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 4123,
+    "reasoning_output_tokens": 864,
+    "uncached_input_tokens": 45865
+  },
+  "toolCounts": {
+    "command_execution": 10,
+    "mcp_tool_call": 8,
+    "file_change": 1
+  },
+  "totalToolOperations": 19,
+  "browserCallTitles": [
+    "Open the verified signed-in ChatGPT browser",
+    "Open an owned ChatGPT task tab",
+    "Delegate the range module in Extra High mode",
+    "Verify the delegated task was submitted",
+    "Check the task chat at the backup interval",
+    "Authorize the exact connector for this task conversation",
+    "Apply conversation-scoped connector authorization",
+    "Delete only the collected task chat and close its tab"
+  ],
+  "evidence": {
+    "taskId": "1d4da6d3-2ba5-4e59-aca0-2d19943286c7",
+    "helperStatuses": {
+      "dispatch": "submission_unconfirmed",
+      "submissionReview": "user_turn_observed",
+      "connectorAuthorization": "conversation_selected",
+      "wait": [
+        "backupDue",
+        "completed"
+      ],
+      "integrity": "verified",
+      "collection": "collected"
+    },
+    "changedFiles": [
+      "src/ranges.mjs",
+      "test/ranges.test.mjs"
+    ],
+    "reportedTests": {
+      "command": "npm test",
+      "result": "PASS",
+      "passed": 8,
+      "failed": 0,
+      "skippedOrCancelled": 0
+    },
+    "result": "PASS: reviewed delivered source and tests; implementation matches the bounded range requirements. No Git metadata was available for a repository diff.",
+    "cleanup": {
+      "chat": "deleted",
+      "tab": "closed",
+      "connectorAndServices": "preserved"
+    }
+  },
+  "independentAcceptance": {
+    "passed": 13,
+    "total": 13,
+    "results": [
+      {
+        "name": "normalization",
+        "status": "PASS"
+      },
+      {
+        "name": "disjoint fractional negatives",
+        "status": "PASS"
+      },
+      {
+        "name": "empty ranges",
+        "status": "PASS"
+      },
+      {
+        "name": "split multiple holes",
+        "status": "PASS"
+      },
+      {
+        "name": "cover and clip",
+        "status": "PASS"
+      },
+      {
+        "name": "touching exclusions",
+        "status": "PASS"
+      },
+      {
+        "name": "normalizes both sets",
+        "status": "PASS"
+      },
+      {
+        "name": "whole removal",
+        "status": "PASS"
+      },
+      {
+        "name": "frozen and fresh",
+        "status": "PASS"
+      },
+      {
+        "name": "malformed containers and pairs",
+        "status": "PASS"
+      },
+      {
+        "name": "invalid endpoints",
+        "status": "PASS"
+      },
+      {
+        "name": "validates exclusions even empty source",
+        "status": "PASS"
+      },
+      {
+        "name": "validates source even full exclusion",
+        "status": "PASS"
+      }
+    ]
+  },
+  "skillSnapshotSha256": {
+    "package-lock.json": "812a2cc888fc7b334b25c68051a8c0598fea25eb966cedb30ead5e90b2828dbc",
+    "package.json": "6661f8cad5a1760e297663a5f2697cac4ea16719b20f4cf7581d73e1b5756166",
+    "SKILL.md": "d20c5226ba1910760ec7579875da0251c98b4d4856b1a044859fe0bf76a9f9d6",
+    "references/open.md": "ce34d4e0a74cd07d2330af3743b1c87351247add76a276b4c31b85102a2b295c",
+    "references/setup.md": "bbb2b030745fb580bbff49be182f1aa87a4cbd9c3b66d0e4ab0dc0d5f4c1893e",
+    "references/browser-reply.md": "3bab30446166d406c4dba95e4488f2ec2066d90dda56d6ea0f639fc9bd0bfa31",
+    "references/workspace.md": "bc0777bfdd64e437157e5c3ecd47b1a702762b49f04b20d852eab1791d1190c6",
+    "references/recovery.md": "8815d8e2de87266c0d29123e4730cf1fd78f4e44effd23b7c03718ca9b90b7a3",
+    "agents/openai.yaml": "2a74d6022f4881aa0e88bf9234042c667868904b9fea9e478248f17b585aa7fa",
+    "scripts/worker.mjs": "82da41993ddddb4062d49c3c606d1f68532544fb0917dc90b4657cad4cdade23",
+    "scripts/open.test.mjs": "b6c0622fde30116660145c7818050c41499ffc4af0ef8e4637a29a6884674107",
+    "scripts/publicMcp.test.mjs": "a1f75bd7975a58d8bef1b293897e5cfa668661d935abd4b068293d2aa219bd06",
+    "scripts/worker.test.mjs": "508ed4ce6258867570feba3ea8ced11dbab375feef115904e96c33048b6e394b",
+    "scripts/client.test.mjs": "3a8733367b0494722cfae70efe02f578a30e78effe731abc84635b1afe25c5ac",
+    "scripts/browser.mjs": "4dc0a9132bd86794611a5ab5c45e048f2055341653950b0b52c90e4e2f623f62",
+    "scripts/terminal.test.mjs": "3b3079b23627940414fc8198b66021f0e30c98b00b8758c9ca25a539240b251f",
+    "scripts/install-pty.mjs": "fadf567947b47d034c25c07b444fd6cba5f4e2098bf1bc8b292ec21b1ffb9ca1",
+    "scripts/browser.test.mjs": "72e5f38793801c8fb7d456f5239ce08d764cf6af49bd03eeff3fa957757e4536",
+    "scripts/client.mjs": "622831102873466baf27f4a726c5a26265642735eaf2a5f978d50ac46eb57189",
+    "scripts/workflow.test.mjs": "00299e5b6c75f9e28d05a2707efca2305547e63094d886b834ec7f247b20f2fa",
+    "scripts/terminal.mjs": "51397213e720bd19f155965bebcf474931e7488e94f193ec7c07d4fef918b1ac"
+  },
+  "fixtureSha256": {
+    "validation/fixtures/range-set/package.json": "fbe2c0a5083bae2c6599dd28873c602bf1a04c77e3d8698463fb0440de4dbf42",
+    "validation/fixtures/range-set/TASK.md": "6f9b8d5f39d6322a9757232c17cafb7bc2a5756979b5e8553d1eb2fd3657fdcf",
+    "validation/fixtures/range-set/test/ranges.test.mjs": "67961f5038af171992989a79217c75798b3a6683043ba59ebd0818f0212ed019",
+    "validation/fixtures/range-set/src/ranges.mjs": "463cc555f81c5928b8363a294eb76f71a01e89d00decb36637ad49cbe37723f9",
+    "validation/evaluate-range-set.mjs": "f4620fd95b7b388a3b8341ba29ea570247dfc6ae67bfbb4f24c5fc57b7ed03af"
+  },
+  "historicalDirectBaseline": {
+    "input_tokens": 174966,
+    "cached_input_tokens": 134144,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 4148,
+    "reasoning_output_tokens": 280,
+    "uncached_input_tokens": 40822
+  },
+  "previousDelegatedBaseline": {
+    "input_tokens": 1329867,
+    "cached_input_tokens": 1240192,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 5259,
+    "reasoning_output_tokens": 963,
+    "uncached_input_tokens": 89675
+  },
+  "additionalParentRecoveryInstructions": 0,
+  "measuredQuotaSavings": false,
+  "notes": [
+    "Direct baseline is the prior same-fixture run, including its sparse-array repair; it was not rerun.",
+    "Permission was selected through grounded manual UI calls, not recoverPermission.",
+    "The controller called finish again before acknowledging backup, then read recovery.",
+    "No same-name connector setup or service restart was needed.",
+    "Parent evaluation/reporting costs are excluded."
+  ]
+}

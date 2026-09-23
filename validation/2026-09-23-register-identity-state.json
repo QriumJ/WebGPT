@@ -1,0 +1,9 @@
+{
+  "tunnelStateUnchanged": true,
+  "workerServiceUnchanged": true,
+  "connectionIdUnchanged": true,
+  "taskCompleted": true,
+  "collected": true,
+  "nextCheck": null,
+  "artifactHashValid": true
+}

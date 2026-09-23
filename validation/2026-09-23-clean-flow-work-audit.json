@@ -1,0 +1,173 @@
+{
+  "threadId": "01a0cc76-ac9d-7d53-8762-00a8574eb06c",
+  "turnContexts": [
+    {
+      "model": "gpt-6-sol",
+      "effort": "low"
+    }
+  ],
+  "freshSession": true,
+  "completedToolOperations": 16,
+  "usage": {
+    "input_tokens": 596810,
+    "cached_input_tokens": 557568,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1769,
+    "reasoning_output_tokens": 146
+  },
+  "reuse": {
+    "setupOrPluginsVisitObserved": false,
+    "existingConnectorUsed": true,
+    "permissionPromptCount": 0
+  },
+  "delegation": {
+    "codexFileChangeToolCount": 0,
+    "codexImplementationWritesObserved": false,
+    "webgptReportedImplementation": true,
+    "commandAuditEnabled": false
+  },
+  "result": {
+    "saved": true,
+    "integrity": "verified",
+    "collected": true,
+    "independentArtifactHashMatch": true
+  },
+  "chat": {
+    "surface": "Chat",
+    "cleanup": "deleted_and_closed",
+    "tabId": "1451557661"
+  },
+  "tests": {
+    "webgptReportedPassed": 3,
+    "independentNpmTestExitCode": 0,
+    "independentNpmTestPassed": 3
+  },
+  "independentAcceptance": {
+    "passed": 18,
+    "failed": 0,
+    "cases": [
+      {
+        "name": "empty",
+        "passed": true
+      },
+      {
+        "name": "frozen Unicode and whitespace",
+        "passed": true
+      },
+      {
+        "name": "duplicates and first order",
+        "passed": true
+      },
+      {
+        "name": "all blanks",
+        "passed": true
+      },
+      {
+        "name": "input remains unchanged",
+        "passed": true
+      },
+      {
+        "name": "reject nonarray null",
+        "passed": true
+      },
+      {
+        "name": "reject nonarray undefined",
+        "passed": true
+      },
+      {
+        "name": "reject nonarray 3",
+        "passed": true
+      },
+      {
+        "name": "reject nonarray [object Object]",
+        "passed": true
+      },
+      {
+        "name": "reject nonarray x",
+        "passed": true
+      },
+      {
+        "name": "reject nonarray [object Set]",
+        "passed": true
+      },
+      {
+        "name": "reject mixed null",
+        "passed": true
+      },
+      {
+        "name": "reject mixed undefined",
+        "passed": true
+      },
+      {
+        "name": "reject mixed 3",
+        "passed": true
+      },
+      {
+        "name": "reject mixed [object Object]",
+        "passed": true
+      },
+      {
+        "name": "reject mixed true",
+        "passed": true
+      },
+      {
+        "name": "reject mixed x",
+        "passed": true
+      },
+      {
+        "name": "reject sparse array",
+        "passed": true
+      }
+    ]
+  },
+  "findings": [
+    "WebGPT reported first npm test failed because Worker PATH omitted package manager locations, then passed with explicit PATH.",
+    "Codex attempted git status/diff in non-git fixture; both failed, without preventing result or cleanup."
+  ],
+  "limitations": [
+    "WebGPT write attribution follows delegated result plus absence of controller implementation writes; independent per-command Worker audit was not enabled."
+  ],
+  "modeVerification": {
+    "observedHelperCalls": [
+      {
+        "event": 25,
+        "dispatch": true,
+        "prepare": false,
+        "xhLiteral": true
+      }
+    ],
+    "extraHighIndependentlyVerified": true,
+    "limitation": null,
+    "evidence": "Visible current mode pop-up button labeled \ub9e4\uc6b0 \ub192\uc74c (Extra High)",
+    "evidenceEventIndices": [
+      20
+    ]
+  },
+  "dispatch": {
+    "status": "submitted",
+    "permission": "not_observed",
+    "observations": 4,
+    "modeArgument": "xh"
+  },
+  "workerPathFinding": {
+    "services": [
+      {
+        "path": "/Users/sunningkim/Library/LaunchAgents/com.webgpt.tunnel.plist",
+        "label": "com.webgpt.tunnel",
+        "environmentVariableNames": [],
+        "PATH": null,
+        "programExecutable": "/opt/homebrew/bin/node"
+      },
+      {
+        "path": "/Users/sunningkim/Library/LaunchAgents/com.webgpt.worker.plist",
+        "label": "com.webgpt.worker",
+        "environmentVariableNames": [],
+        "PATH": null,
+        "programExecutable": "/opt/homebrew/bin/node"
+      }
+    ],
+    "savedWebgptReason": "The Worker default PATH (/usr/bin:/bin:/usr/sbin:/sbin) did not expose npm; first npm test returned command not found. Retried successfully after adding /opt/homebrew/bin and /usr/local/bin to PATH.",
+    "severity": "material setup portability/usability flaw",
+    "independentLaunchPlistEvidence": true
+  }
+}

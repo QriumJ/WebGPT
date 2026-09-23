@@ -1,0 +1,661 @@
+{
+  "evidenceRoot": "/var/folders/nm/5t94y71s61x7r_trftjmltvh0000gn/T/webgpt-persistent-eval-kgij4c8q",
+  "modelRequested": "gpt-5.6-sol",
+  "reasoningRequested": "low",
+  "quotaSavingsMeasured": false,
+  "runs": {
+    "setup": {
+      "thread": "01a0cbd9-32a2-7492-b93a-1c6c8a789688",
+      "modelProof": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        }
+      ],
+      "toolCounts": {
+        "command_execution": 4,
+        "mcp_tool_call": 42,
+        "file_change": 1
+      },
+      "totalToolOperations": 47,
+      "browserCallTitles": [
+        "Inspect signed-in browser tabs",
+        "Open ChatGPT connector settings",
+        "Open plugin connections",
+        "Open connection manager",
+        "Inspect connection setup dialog",
+        "Check existing personal connections",
+        "List personal plugins",
+        "Verify WebGPT Worker connection",
+        "Inspect WebGPT Worker details",
+        "Inspect WebGPT Worker configuration",
+        "Install verified WebGPT Worker plugin",
+        "Review installation confirmation",
+        "Open ChatGPT connector settings",
+        "Open account settings",
+        "Inspect installed WebGPT Worker",
+        "Verify connection details and tools",
+        "Connect WebGPT Worker",
+        "Return to plugin directory",
+        "Inspect connector error state",
+        "Open new MCP app form",
+        "Load plugin controls",
+        "Create MCP app connection",
+        "Load new plugin dialog",
+        "Open MCP connection form",
+        "Configure private worker connection",
+        "Choose no OAuth",
+        "Open authentication options",
+        "Set authentication to none",
+        "Select no authentication",
+        "Acknowledge MCP connection risk",
+        "Create WebGPT Worker connection",
+        "Verify connector creation",
+        "Inspect connector creation result",
+        "Check for creation completion",
+        "Verify created personal connection",
+        "Verify new WebGPT Worker tools",
+        "Open created worker plugin",
+        "Inspect created worker plugin",
+        "Inspect discovered WebGPT Worker tools",
+        "Open installed plugin details",
+        "Load worker tool discovery",
+        "Close owned settings tab"
+      ],
+      "prewaitBrowserCalls": 42,
+      "completed": true,
+      "usage": {
+        "input_tokens": 3201090,
+        "cached_input_tokens": 3101440,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5099,
+        "reasoning_output_tokens": 1805,
+        "uncached_input_tokens": 99650
+      },
+      "setup-evidence.json": {
+        "setup": "webgpt-persistent-connection",
+        "checkedAt": "2026-09-23T10:23:00+09:00",
+        "status": "PASS",
+        "configPath": "~/.config/webgpt/config.json",
+        "connection": {
+          "name": "WebGPT Worker",
+          "authentication": "none",
+          "privateUrlMatchedRuntimeFile": true,
+          "installed": true,
+          "retainedForFutureSessions": true
+        },
+        "browser": {
+          "name": "Chrome",
+          "signedIn": true
+        },
+        "services": {
+          "worker": "com.local.webgpt.worker",
+          "forwarder": "com.local.webgpt.tunnel",
+          "restarted": false
+        },
+        "discovery": {
+          "status": "PASS",
+          "tools": [
+            "exec_command",
+            "write_stdin",
+            "get_task",
+            "read_input",
+            "submit_result"
+          ]
+        },
+        "smokeChat": "NOT_RUN (explicitly excluded)",
+        "notes": "Existing registration was inspected first and failed connector loading with zero tools. A current URL-backed registration was then created and verified. No credentials or private URL are stored here."
+      }
+    },
+    "reuse-smoke": {
+      "thread": "01a0cbdd-90e3-7451-95c9-587d686f26d1",
+      "modelProof": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        }
+      ],
+      "toolCounts": {
+        "command_execution": 11,
+        "mcp_tool_call": 43,
+        "file_change": 1
+      },
+      "totalToolOperations": 55,
+      "browserCallTitles": [
+        "Initialize signed-in Chrome",
+        "Open owned WebGPT task tab",
+        "Dispatch reuse smoke test to WebGPT",
+        "Reconnect to signed-in Chrome",
+        "Inspect existing WebGPT attempt",
+        "Inspect WebGPT Worker connection",
+        "Find existing WebGPT Worker plugin",
+        "Open WebGPT Worker details",
+        "Refresh plugin search results",
+        "Inspect first WebGPT Worker registration",
+        "Open WebGPT Worker configuration",
+        "Load connector configuration details",
+        "Start chat with verified WebGPT Worker",
+        "Verify connector-selected fresh chat",
+        "Retry smoke test with selected connector",
+        "Set Extra High mode",
+        "Refresh selected connector chat",
+        "Submit recovered WebGPT smoke test",
+        "Confirm recovered submission",
+        "Send WebGPT smoke test",
+        "Reconnect to signed-in Chrome",
+        "Reconcile interrupted owned tab",
+        "Delete interrupted owned Work chat",
+        "Open first owned test chat for cleanup",
+        "Delete first owned failed chat",
+        "Open fresh Chat-only smoke-test tab",
+        "Open Chat composer tools",
+        "Select WebGPT Worker in Chat",
+        "Remove wrong duplicate connector selection",
+        "Select exact connector registration in Chat",
+        "Verify exact connector hint on Chat",
+        "Open clean Chat with exact connector",
+        "Verify clean Chat connector selection",
+        "Remove older duplicate connector chip",
+        "Dispatch exact-connector Chat smoke test",
+        "Check scoped connector permission",
+        "Check Chat smoke-test outcome",
+        "Grant conversation-scoped Worker access",
+        "Open Worker access choices",
+        "Inspect scoped access dialog",
+        "Authorize verified Worker connection",
+        "Verify Worker connection authorization",
+        "Delete completed owned Chat test"
+      ],
+      "prewaitBrowserCalls": 35,
+      "completed": true,
+      "usage": {
+        "input_tokens": 4133614,
+        "cached_input_tokens": 4031488,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9132,
+        "reasoning_output_tokens": 3164,
+        "uncached_input_tokens": 102126
+      },
+      "evidence.json": {
+        "interrupted": {
+          "task_id": "f316d7b0-8ae3-4818-9c1e-e1d86fe0b303",
+          "status_before_cancel": "running_backup_due_no_saved_result",
+          "access_cancelled": true,
+          "submission": "confirmed_in_owned_chats",
+          "permission_helper": "not_observed",
+          "terminal": "NOT_RUN",
+          "outcome": "failed_connector_unavailable_then_interrupted_for_chat_only_policy",
+          "collection": "no_saved_result",
+          "chat_cleanup": [
+            "deleted_and_closed",
+            "deleted_and_closed"
+          ]
+        },
+        "final": {
+          "task_id": "97b24c07-a548-449f-8075-317925f33e77",
+          "surface": "Chat",
+          "mode": "Extra High",
+          "connector_registration_id": "plugin_asdk_app_6ab329f192648191887194b1bc5c0412",
+          "submission_helper": "submitted",
+          "permission_helper": "not_observed_then_connected_via_scoped_ui",
+          "terminal": {
+            "command_count": 1,
+            "output": "REUSE_OK",
+            "exit_code": 0
+          },
+          "worker_status": "completed",
+          "integrity": "verified",
+          "collection": "collected",
+          "chat_cleanup": "deleted_and_closed"
+        }
+      }
+    },
+    "direct": {
+      "thread": "01a0cbda-91a3-7673-9f69-b0724bf7faa4",
+      "modelProof": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        }
+      ],
+      "toolCounts": {
+        "command_execution": 6,
+        "file_change": 5
+      },
+      "totalToolOperations": 11,
+      "browserCallTitles": [],
+      "prewaitBrowserCalls": 0,
+      "completed": true,
+      "usage": {
+        "input_tokens": 174966,
+        "cached_input_tokens": 134144,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4148,
+        "reasoning_output_tokens": 280,
+        "uncached_input_tokens": 40822
+      },
+      "initialUsage": {
+        "input_tokens": 107061,
+        "cached_input_tokens": 69888,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3119,
+        "reasoning_output_tokens": 206
+      },
+      "acceptance.json": {
+        "passed": 13,
+        "total": 13,
+        "results": [
+          {
+            "name": "normalization",
+            "status": "PASS"
+          },
+          {
+            "name": "disjoint fractional negatives",
+            "status": "PASS"
+          },
+          {
+            "name": "empty ranges",
+            "status": "PASS"
+          },
+          {
+            "name": "split multiple holes",
+            "status": "PASS"
+          },
+          {
+            "name": "cover and clip",
+            "status": "PASS"
+          },
+          {
+            "name": "touching exclusions",
+            "status": "PASS"
+          },
+          {
+            "name": "normalizes both sets",
+            "status": "PASS"
+          },
+          {
+            "name": "whole removal",
+            "status": "PASS"
+          },
+          {
+            "name": "frozen and fresh",
+            "status": "PASS"
+          },
+          {
+            "name": "malformed containers and pairs",
+            "status": "PASS"
+          },
+          {
+            "name": "invalid endpoints",
+            "status": "PASS"
+          },
+          {
+            "name": "validates exclusions even empty source",
+            "status": "PASS"
+          },
+          {
+            "name": "validates source even full exclusion",
+            "status": "PASS"
+          }
+        ]
+      },
+      "acceptance-initial.json": {
+        "passed": 12,
+        "total": 13,
+        "results": [
+          {
+            "name": "normalization",
+            "status": "PASS"
+          },
+          {
+            "name": "disjoint fractional negatives",
+            "status": "PASS"
+          },
+          {
+            "name": "empty ranges",
+            "status": "PASS"
+          },
+          {
+            "name": "split multiple holes",
+            "status": "PASS"
+          },
+          {
+            "name": "cover and clip",
+            "status": "PASS"
+          },
+          {
+            "name": "touching exclusions",
+            "status": "PASS"
+          },
+          {
+            "name": "normalizes both sets",
+            "status": "PASS"
+          },
+          {
+            "name": "whole removal",
+            "status": "PASS"
+          },
+          {
+            "name": "frozen and fresh",
+            "status": "PASS"
+          },
+          {
+            "name": "malformed containers and pairs",
+            "status": "FAIL",
+            "error": "Missing expected exception (TypeError)."
+          },
+          {
+            "name": "invalid endpoints",
+            "status": "PASS"
+          },
+          {
+            "name": "validates exclusions even empty source",
+            "status": "PASS"
+          },
+          {
+            "name": "validates source even full exclusion",
+            "status": "PASS"
+          }
+        ]
+      },
+      "evidence.json": {
+        "changed_files": [
+          "src/ranges.mjs",
+          "test/ranges.test.mjs",
+          "evidence.json"
+        ],
+        "test": {
+          "command": "npm test",
+          "outcome": "passed: 11 tests, 0 failed"
+        },
+        "remaining_issues": []
+      }
+    },
+    "delegated": {
+      "thread": "01a0cbe9-5547-7492-9ea6-1affdd26ac5d",
+      "modelProof": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        }
+      ],
+      "toolCounts": {
+        "command_execution": 11,
+        "mcp_tool_call": 11,
+        "file_change": 2
+      },
+      "totalToolOperations": 24,
+      "browserCallTitles": [
+        "Open signed-in ChatGPT Chat",
+        "Open owned Chat task tab",
+        "Dispatch bounded module assignment",
+        "Check owned Chat checkpoint",
+        "Check second task checkpoint",
+        "Inspect existing submitted task",
+        "Authorize exact connector for this Chat",
+        "Check worker completion checkpoint",
+        "Delete owned task chat and close tab",
+        "Reattach owned task tab",
+        "Delete owned task chat and close tab"
+      ],
+      "prewaitBrowserCalls": 3,
+      "completed": true,
+      "usage": {
+        "input_tokens": 1329867,
+        "cached_input_tokens": 1240192,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5259,
+        "reasoning_output_tokens": 963,
+        "uncached_input_tokens": 89675
+      },
+      "acceptance.json": {
+        "passed": 13,
+        "total": 13,
+        "results": [
+          {
+            "name": "normalization",
+            "status": "PASS"
+          },
+          {
+            "name": "disjoint fractional negatives",
+            "status": "PASS"
+          },
+          {
+            "name": "empty ranges",
+            "status": "PASS"
+          },
+          {
+            "name": "split multiple holes",
+            "status": "PASS"
+          },
+          {
+            "name": "cover and clip",
+            "status": "PASS"
+          },
+          {
+            "name": "touching exclusions",
+            "status": "PASS"
+          },
+          {
+            "name": "normalizes both sets",
+            "status": "PASS"
+          },
+          {
+            "name": "whole removal",
+            "status": "PASS"
+          },
+          {
+            "name": "frozen and fresh",
+            "status": "PASS"
+          },
+          {
+            "name": "malformed containers and pairs",
+            "status": "PASS"
+          },
+          {
+            "name": "invalid endpoints",
+            "status": "PASS"
+          },
+          {
+            "name": "validates exclusions even empty source",
+            "status": "PASS"
+          },
+          {
+            "name": "validates source even full exclusion",
+            "status": "PASS"
+          }
+        ]
+      },
+      "evidence.json": {
+        "taskId": "1a3939f3-be18-4c0d-95db-2f5bb836484d",
+        "helperStatuses": {
+          "dispatch": "submitted",
+          "permissionHelper": "submission_unconfirmed at native permission menu",
+          "permissionResolution": "conversation-scoped option selected manually for exact connector",
+          "worker": "completed",
+          "integrity": "verified",
+          "collection": "collected"
+        },
+        "changedFiles": [
+          "src/ranges.mjs",
+          "test/ranges.test.mjs"
+        ],
+        "reportedTests": {
+          "worker": "npm test started; final exit summary unavailable from connector",
+          "review": "npm test: PASS, 9 passed, 0 failed"
+        },
+        "result": "PASS",
+        "cleanup": {
+          "taskAccess": "revoked by collection",
+          "helperReturn": "deleted_and_closed",
+          "chatDeletion": "verified deleted",
+          "tabClose": "verified closed (1451557482)",
+          "connectorAndServices": "preserved"
+        }
+      }
+    },
+    "fresh-reuse": {
+      "thread": "01a0cbf0-b32e-73f3-b859-be386dd6b639",
+      "modelProof": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        }
+      ],
+      "toolCounts": {
+        "command_execution": 8,
+        "mcp_tool_call": 6,
+        "file_change": 2
+      },
+      "totalToolOperations": 16,
+      "browserCallTitles": [
+        "Open the saved WebGPT connector in a new Chat tab",
+        "Dispatch the single-command verification through WebGPT",
+        "Check the owned chat once at the backup interval",
+        "Reacquire the exact owned WebGPT task tab",
+        "Delete the confirmed owned chat and close its tab",
+        "Verify the owned task tab is absent"
+      ],
+      "prewaitBrowserCalls": 2,
+      "completed": true,
+      "usage": {
+        "input_tokens": 687085,
+        "cached_input_tokens": 640768,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4111,
+        "reasoning_output_tokens": 836,
+        "uncached_input_tokens": 46317
+      },
+      "evidence.json": {
+        "registrationId": "plugin_asdk_app_6ab329f192648191887194b1bc5c0412",
+        "surface": "Chat",
+        "taskId": "04e474f5-d6c1-4950-b7c6-aae1e436158c",
+        "helpers": {
+          "dispatch": "submitted",
+          "backupCheck": "conversation_selected",
+          "worker": "completed"
+        },
+        "terminal": {
+          "command": "printf 'NOTE_REUSE_OK\\n'",
+          "output": "NOTE_REUSE_OK",
+          "exitCode": 0,
+          "result": "PASS"
+        },
+        "collection": {
+          "integrity": "verified",
+          "collected": true
+        },
+        "cleanup": {
+          "chatUrl": "https://chatgpt.com/c/6ab32f7a-f94c-83e8-9c2a-ffb15dc6666b",
+          "tabId": "1451557486",
+          "helperStatus": "deleted_and_closed",
+          "chatDeleted": true,
+          "tabClosed": true,
+          "ownedTabPresentAfterCleanup": false,
+          "status": "verified"
+        },
+        "settingsOrSetupNeeded": false
+      }
+    }
+  },
+  "retention": {
+    "sameServicePids": true,
+    "services": {
+      "com.local.webgpt.worker": {
+        "state": "running",
+        "pid": 39783
+      },
+      "com.local.webgpt.tunnel": {
+        "state": "running",
+        "pid": 39785
+      }
+    },
+    "publicHealth": "PASS",
+    "tasks": [
+      {
+        "id": "f316d7b0-8ae3-4818-9c1e-e1d86fe0b303",
+        "status": "cancelled",
+        "collected": true,
+        "backupPending": false
+      },
+      {
+        "id": "97b24c07-a548-449f-8075-317925f33e77",
+        "status": "completed",
+        "collected": true,
+        "backupPending": false
+      },
+      {
+        "id": "1a3939f3-be18-4c0d-95db-2f5bb836484d",
+        "status": "completed",
+        "collected": true,
+        "backupPending": false
+      },
+      {
+        "id": "04e474f5-d6c1-4950-b7c6-aae1e436158c",
+        "status": "completed",
+        "collected": true,
+        "backupPending": false
+      }
+    ],
+    "connectorRetained": true,
+    "connectionRegistrationId": "plugin_asdk_app_6ab329f192648191887194b1bc5c0412"
+  },
+  "fixtureSha256": {
+    "validation/fixtures/range-set/package.json": "fbe2c0a5083bae2c6599dd28873c602bf1a04c77e3d8698463fb0440de4dbf42",
+    "validation/fixtures/range-set/TASK.md": "6f9b8d5f39d6322a9757232c17cafb7bc2a5756979b5e8553d1eb2fd3657fdcf",
+    "validation/fixtures/range-set/test/ranges.test.mjs": "67961f5038af171992989a79217c75798b3a6683043ba59ebd0818f0212ed019",
+    "validation/fixtures/range-set/src/ranges.mjs": "463cc555f81c5928b8363a294eb76f71a01e89d00decb36637ad49cbe37723f9",
+    "validation/evaluate-range-set.mjs": "f4620fd95b7b388a3b8341ba29ea570247dfc6ae67bfbb4f24c5fc57b7ed03af"
+  },
+  "finalSourceSha256": {
+    "skills/webgpt/SKILL.md": "d20c5226ba1910760ec7579875da0251c98b4d4856b1a044859fe0bf76a9f9d6",
+    "skills/webgpt/references/workspace.md": "bc0777bfdd64e437157e5c3ecd47b1a702762b49f04b20d852eab1791d1190c6",
+    "skills/webgpt/references/setup.md": "bbb2b030745fb580bbff49be182f1aa87a4cbd9c3b66d0e4ab0dc0d5f4c1893e",
+    "skills/webgpt/references/recovery.md": "8815d8e2de87266c0d29123e4730cf1fd78f4e44effd23b7c03718ca9b90b7a3",
+    "skills/webgpt/scripts/browser.mjs": "4dc0a9132bd86794611a5ab5c45e048f2055341653950b0b52c90e4e2f623f62",
+    "skills/webgpt/scripts/client.mjs": "622831102873466baf27f4a726c5a26265642735eaf2a5f978d50ac46eb57189"
+  },
+  "measuredSnapshots": {
+    "delegated": {
+      "SKILL.md": "2f253425a4e91e8db06c3d28556c5ccfa2678fae0b74d9e8bc9f3b374d9b7f3e",
+      "references/recovery.md": "44254b2e6b83bb68f4e2a81d1aa5e9c0420d2445e6d90ab3f7faa81d40b59198",
+      "scripts/browser.mjs": "ac83d8e0e0969c5703ed4b0e1c89f557a3fa6ffea678c935a49e567d63b4750a",
+      "scripts/client.mjs": "622831102873466baf27f4a726c5a26265642735eaf2a5f978d50ac46eb57189"
+    },
+    "fresh-reuse": {
+      "SKILL.md": "2cec788f0939ebac1d9e5d92525cc1489b6d7eed12c23cb2864af5b3855838fd",
+      "references/recovery.md": "8815d8e2de87266c0d29123e4730cf1fd78f4e44effd23b7c03718ca9b90b7a3",
+      "scripts/browser.mjs": "4dc0a9132bd86794611a5ab5c45e048f2055341653950b0b52c90e4e2f623f62",
+      "scripts/client.mjs": "622831102873466baf27f4a726c5a26265642735eaf2a5f978d50ac46eb57189"
+    }
+  },
+  "localValidation": {
+    "nodeTests": 110,
+    "passed": 110,
+    "skillValidator": "PASS",
+    "relativeReferences": "PASS",
+    "diffCheck": "PASS",
+    "finalNativeMenuTightening": "targeted cases PASS after full-suite run"
+  },
+  "additionalParentInstructions": {
+    "direct": 1,
+    "delegated": 1,
+    "reuse-smoke": 1,
+    "fresh-reuse": 1
+  },
+  "limitations": [
+    "Token counters are not measured quota savings.",
+    "Final module run predates final native-menu/reply-observation fix; final smoke tests those changes.",
+    "Two final CLI controllers stopped for deletion confirmation; exact-task follow-ups completed cleanup.",
+    "Quick Tunnel public origin changes after process restart.",
+    "Parent and native-agent implementation/review costs are excluded."
+  ],
+  "totalCliUsage": {
+    "input_tokens": 9526622,
+    "cached_input_tokens": 9148032,
+    "uncached_input_tokens": 378590,
+    "output_tokens": 27749,
+    "reasoning_output_tokens": 7048
+  },
+  "normalInstructionChars": 10586
+}

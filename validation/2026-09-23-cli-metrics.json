@@ -1,0 +1,157 @@
+{
+  "baseline_commit": "a2a4c4f15b62813cc87700b15b34480146775b04",
+  "measurement": "Fresh-session CLI counters; not quota usage",
+  "document_sizes": {
+    "baseline": {
+      "SKILL.md": 10175,
+      "references/workspace.md": 6207,
+      "combined_characters": 16382
+    },
+    "probe": {
+      "SKILL.md": 13361,
+      "references/workspace.md": 7613,
+      "combined_characters": 20974
+    },
+    "candidate": {
+      "SKILL.md": 8009,
+      "references/workspace.md": 6049,
+      "combined_characters": 14058
+    }
+  },
+  "primary_runs": [
+    {
+      "variant": "baseline",
+      "case": "single",
+      "usage": {
+        "input_tokens": 474093,
+        "cached_input_tokens": 415872,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3247,
+        "reasoning_output_tokens": 1001
+      },
+      "uncached_input_tokens": 58221,
+      "completed_items": {
+        "agent_message": 5,
+        "command_execution": 4,
+        "mcp_tool_call": 10,
+        "file_change": 1
+      },
+      "tool_calls": 15,
+      "prompt_sha256": "d6d7f043ed5bfd245985493e82e93c806e23aa3b03aef2be964498e114ecbd14",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "low"
+    },
+    {
+      "variant": "baseline",
+      "case": "followup",
+      "usage": {
+        "input_tokens": 94526,
+        "cached_input_tokens": 62336,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 790,
+        "reasoning_output_tokens": 475
+      },
+      "uncached_input_tokens": 32190,
+      "completed_items": {
+        "agent_message": 2,
+        "command_execution": 1,
+        "mcp_tool_call": 2
+      },
+      "tool_calls": 3,
+      "prompt_sha256": "67b427420e9dbdb0caaa582109057b7e36fe00f46e1c545abedad64388500905",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "low"
+    },
+    {
+      "variant": "candidate",
+      "case": "single",
+      "usage": {
+        "input_tokens": 255122,
+        "cached_input_tokens": 205824,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1622,
+        "reasoning_output_tokens": 470
+      },
+      "uncached_input_tokens": 49298,
+      "completed_items": {
+        "agent_message": 4,
+        "mcp_tool_call": 6,
+        "file_change": 1,
+        "command_execution": 1
+      },
+      "tool_calls": 8,
+      "prompt_sha256": "d6d7f043ed5bfd245985493e82e93c806e23aa3b03aef2be964498e114ecbd14",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "low"
+    },
+    {
+      "variant": "candidate",
+      "case": "followup",
+      "usage": {
+        "input_tokens": 457078,
+        "cached_input_tokens": 413824,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2587,
+        "reasoning_output_tokens": 736
+      },
+      "uncached_input_tokens": 43254,
+      "completed_items": {
+        "agent_message": 4,
+        "command_execution": 2,
+        "mcp_tool_call": 11,
+        "file_change": 1
+      },
+      "tool_calls": 14,
+      "prompt_sha256": "67b427420e9dbdb0caaa582109057b7e36fe00f46e1c545abedad64388500905",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "low"
+    }
+  ],
+  "candidate_sha256": {
+    "skills/webgpt/SKILL.md": "32f1b7f8e280fcb5031eed1a97e426d86e42205c8d065915c85eb22acb642976",
+    "skills/webgpt/references/workspace.md": "e66ce148bd5eb5c43acb64e8497ce35eeaf3642a0fd9befdcbbefc105cd561cd",
+    "skills/webgpt/scripts/browser.mjs": "782ca98423fa6df6efc8efbacf5c1e7a19b4c7afd7b851f1287b30f1ca789446"
+  },
+  "baseline_with_recovery": [
+    {
+      "case": "single",
+      "variant": "baseline",
+      "additional_parent_instructions": 1,
+      "cumulative_usage": {
+        "input_tokens": 839278,
+        "cached_input_tokens": 730880,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4875,
+        "reasoning_output_tokens": 1376
+      },
+      "uncached_input_tokens": 108398,
+      "tool_calls": 22,
+      "completed_items": {
+        "agent_message": 9,
+        "command_execution": 4,
+        "mcp_tool_call": 16,
+        "file_change": 2
+      }
+    },
+    {
+      "case": "followup",
+      "variant": "baseline",
+      "additional_parent_instructions": 2,
+      "cumulative_usage": {
+        "input_tokens": 1056793,
+        "cached_input_tokens": 992768,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4539,
+        "reasoning_output_tokens": 1277
+      },
+      "uncached_input_tokens": 64025,
+      "tool_calls": 21,
+      "completed_items": {
+        "agent_message": 8,
+        "command_execution": 3,
+        "mcp_tool_call": 17,
+        "file_change": 1
+      }
+    }
+  ]
+}

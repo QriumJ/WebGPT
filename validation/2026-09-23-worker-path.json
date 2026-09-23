@@ -1,0 +1,37 @@
+{
+  "thread": "01a0cc96-840f-7131-be04-6ebfd0dc04da",
+  "modelContexts": [
+    {
+      "model": "gpt-6-sol",
+      "effort": "low"
+    }
+  ],
+  "freshSession": true,
+  "taskId": "c542f90c-3bf8-477f-847e-538bd98e78bf",
+  "status": "completed",
+  "collected": true,
+  "nextCheck": null,
+  "artifactHashValid": true,
+  "servicePathSet": true,
+  "tunnelServiceUnchanged": true,
+  "tunnelStateUnchanged": true,
+  "workerConfigUnchanged": true,
+  "connectionIdUnchanged": true,
+  "deletedAndClosedObserved": true,
+  "toolTitles": [
+    "Inspect signed-in browser tabs",
+    "Open owned Chat tab",
+    "Delegate exact PATH verification through Chat",
+    "Check submitted Chat turn",
+    "Inspect verification progress",
+    "Delete test conversation and close tab"
+  ],
+  "savedResult": "Command: node --version && npm --version && npm test\n\nComplete stdout:\nv26.5.0\n11.17.0\n\n> test\n> node -e \"console.log('WORKER_PATH_OK')\"\n\nWORKER_PATH_OK\n\nExit status: 0",
+  "usage": {
+    "input_tokens": 659577,
+    "cached_input_tokens": 595584,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2730,
+    "reasoning_output_tokens": 266
+  }
+}

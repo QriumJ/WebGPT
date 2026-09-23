@@ -1,0 +1,312 @@
+{
+  "date": "2026-09-23",
+  "privateEvidenceRoot": "/var/folders/nm/5t94y71s61x7r_trftjmltvh0000gn/T/webgpt-startup-eval-bg9osvxm",
+  "baseline": {
+    "threadId": "01a0cbaa-6162-7172-98d0-433230f6bdee",
+    "usage": {
+      "input_tokens": 534142,
+      "cached_input_tokens": 457472,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 3175,
+      "reasoning_output_tokens": 820,
+      "uncached_input_tokens": 76670
+    },
+    "completedItems": {
+      "agent_message": 3,
+      "command_execution": 6,
+      "mcp_tool_call": 8,
+      "file_change": 1
+    },
+    "toolOperations": 15,
+    "verifiedTurnContexts": [
+      {
+        "model": "gpt-5.6-sol",
+        "effort": "low"
+      }
+    ]
+  },
+  "unitTests": {
+    "passed": 85,
+    "total": 85
+  },
+  "skillValidation": "PASS",
+  "snapshotHashes": {
+    "SKILL.md": "076bc7b32c58da9ee025afe7e3ec48528b368fbcf7ffaf5befe095fb1949753a",
+    "references/workspace.md": "bc0777bfdd64e437157e5c3ecd47b1a702762b49f04b20d852eab1791d1190c6",
+    "references/recovery.md": "a0c5b7eae260a69f72b3939bbf92d86b1f2b9f4ffd1119b37f87eb9f7afb4e8b",
+    "scripts/browser.mjs": "c4e7a2ec1ef6a2eb43a1152d0aa3b760253316466e832e38bfe280648a8c216b",
+    "scripts/client.mjs": "b021e074ebc93085ce62c9862d20df9f73b40e40736abd95defd6ee3a3f95c74"
+  },
+  "runs": {
+    "setup": {
+      "threadId": "01a0cbb4-e25f-7653-8c64-03ac8b44bb30",
+      "usage": {
+        "input_tokens": 1500084,
+        "cached_input_tokens": 1449728,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 4275,
+        "reasoning_output_tokens": 1305,
+        "uncached_input_tokens": 50356
+      },
+      "completedItems": {
+        "agent_message": 3,
+        "command_execution": 3,
+        "mcp_tool_call": 27,
+        "file_change": 1
+      },
+      "toolOperations": 31,
+      "extraParentRecoveryInstructions": 0,
+      "verifiedTurnContexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        }
+      ]
+    },
+    "candidate": {
+      "threadId": "01a0cbb8-8c30-7ad2-8788-d3648cad373d",
+      "usage": {
+        "input_tokens": 679948,
+        "cached_input_tokens": 648960,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3789,
+        "reasoning_output_tokens": 1122,
+        "uncached_input_tokens": 30988
+      },
+      "completedItems": {
+        "agent_message": 5,
+        "command_execution": 8,
+        "mcp_tool_call": 8,
+        "file_change": 1
+      },
+      "toolOperations": 17,
+      "extraParentRecoveryInstructions": 0,
+      "verifiedTurnContexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        }
+      ],
+      "independentEvaluation": {
+        "passed": 7,
+        "total": 7,
+        "results": [
+          {
+            "name": "zero",
+            "status": "PASS"
+          },
+          {
+            "name": "empty string",
+            "status": "PASS"
+          },
+          {
+            "name": "missing IDs",
+            "status": "PASS"
+          },
+          {
+            "name": "order and first object",
+            "status": "PASS"
+          },
+          {
+            "name": "no mutation",
+            "status": "PASS"
+          },
+          {
+            "name": "ID types remain distinct",
+            "status": "PASS"
+          },
+          {
+            "name": "empty input",
+            "status": "PASS"
+          }
+        ]
+      },
+      "controllerEvidence": {
+        "status": "completed",
+        "taskId": "f3e7833b-ab57-4584-8213-78701f3c85e9",
+        "changedFiles": [
+          "src/unique.mjs",
+          "test/unique.test.mjs"
+        ],
+        "testOutcome": {
+          "status": "PASS",
+          "command": "npm test",
+          "passed": 2,
+          "failed": 0,
+          "reportedBy": "WebGPT Worker"
+        },
+        "collection": {
+          "status": "collected",
+          "integrity": "verified",
+          "sha256": "2e172d1f407f0d3994ec17d07a584bebc110f864ff5c3432f14a1aa50c6a199d"
+        },
+        "cleanup": {
+          "status": "completed",
+          "chatDeleted": true,
+          "ownedTabClosed": true,
+          "ownedTabAbsent": true,
+          "connectorPreserved": true,
+          "unrelatedResourcesPreserved": true
+        }
+      }
+    },
+    "final": {
+      "threadId": "01a0cbbe-2578-77f0-addc-6d50f4e46bee",
+      "usage": {
+        "input_tokens": 556616,
+        "cached_input_tokens": 516992,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2748,
+        "reasoning_output_tokens": 402,
+        "uncached_input_tokens": 39624
+      },
+      "completedItems": {
+        "agent_message": 4,
+        "command_execution": 9,
+        "mcp_tool_call": 5,
+        "file_change": 1
+      },
+      "toolOperations": 15,
+      "extraParentRecoveryInstructions": 0,
+      "verifiedTurnContexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        }
+      ],
+      "independentEvaluation": {
+        "passed": 7,
+        "total": 7,
+        "results": [
+          {
+            "name": "zero",
+            "status": "PASS"
+          },
+          {
+            "name": "empty string",
+            "status": "PASS"
+          },
+          {
+            "name": "missing IDs",
+            "status": "PASS"
+          },
+          {
+            "name": "order and first object",
+            "status": "PASS"
+          },
+          {
+            "name": "no mutation",
+            "status": "PASS"
+          },
+          {
+            "name": "ID types remain distinct",
+            "status": "PASS"
+          },
+          {
+            "name": "empty input",
+            "status": "PASS"
+          }
+        ]
+      },
+      "controllerEvidence": {
+        "status": "completed",
+        "task_id": "dba3fec8-26bd-4984-990a-1527322b1073",
+        "changed_files": [
+          "src/unique.mjs",
+          "test/unique.test.mjs"
+        ],
+        "test_outcome": {
+          "command": "npm test",
+          "status": "PASS",
+          "passed": 3,
+          "failed": 0
+        },
+        "collection": {
+          "status": "collected",
+          "integrity": "verified"
+        },
+        "cleanup": {
+          "status": "deleted_and_closed",
+          "chat_deleted": true,
+          "owned_tab_closed": true,
+          "connector_preserved": true
+        }
+      }
+    }
+  },
+  "normalPathChars": {
+    "before": 16147,
+    "after": 9555
+  },
+  "preWaitBrowserCalls": {
+    "baseline": 7,
+    "candidate": 2,
+    "final": 2
+  },
+  "limitations": [
+    "CLI token counters are not Codex quota debits.",
+    "Cache state, permission timing, generation time, and UI rendering were not held constant.",
+    "Final run required a due-check fallback for a permission prompt appearing after bounded startup; UI evidence shows Allow once, not conversation-wide grant.",
+    "New automated conversation-choice path passed adversarial unit tests but was not exercised by the two live dispatch calls; both returned permission not_observed.",
+    "Final run made an avoidable finish call before acknowledging backupDue; total tool count therefore remained 15.",
+    "Known Chrome identity was supplied from setup rather than rediscovered.",
+    "Parent implementation, native review, independent evaluation, reporting and service setup usage excluded from child CLI counters.",
+    "Both successful trials retained; first trial needed deletion UI fallback."
+  ],
+  "snapshotMatchesCurrent": {
+    "SKILL.md": true,
+    "references/workspace.md": true,
+    "references/recovery.md": true,
+    "scripts/browser.mjs": true,
+    "scripts/client.mjs": true
+  },
+  "setupAndTeardownCumulativeUsage": {
+    "input_tokens": 2826267,
+    "cached_input_tokens": 2751616,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 6912,
+    "reasoning_output_tokens": 2011,
+    "uncached_input_tokens": 74651
+  },
+  "teardownIncrementalUsage": {
+    "input_tokens": 1326183,
+    "cached_input_tokens": 1301888,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2637,
+    "reasoning_output_tokens": 706,
+    "uncached_input_tokens": 24295
+  },
+  "teardownCompletedItems": {
+    "agent_message": 3,
+    "command_execution": 3,
+    "mcp_tool_call": 13,
+    "file_change": 1
+  },
+  "teardownEvidence": {
+    "teardown": "PASS",
+    "connector": {
+      "name": "WebGPT Startup Eval 20260923",
+      "removed": true,
+      "absenceVerified": true
+    },
+    "browser": "signed-in Chrome",
+    "unrelatedConnectors": "PRESERVED",
+    "ownedSettingsTabs": "CLOSED",
+    "worker": "LEFT_RUNNING",
+    "httpsForwarder": "LEFT_RUNNING",
+    "verifiedAt": "2026-09-23T09:56:24+09:00"
+  },
+  "cleanup": {
+    "allTasksCompletedAndCollected": true,
+    "ownedTaskChatsDeleted": true,
+    "ownedTabsClosed": true,
+    "testConnectorRemoved": true,
+    "workerExitCode": 0,
+    "tunnelExitCode": 0,
+    "testPortsHaveListeners": false
+  }
+}

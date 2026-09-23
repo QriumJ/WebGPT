@@ -1,0 +1,94 @@
+{
+  "trial": "candidate-final",
+  "threadId": "01a0ccb1-f430-75e0-adc9-f31779e2748a",
+  "modelContexts": [
+    {
+      "model": "gpt-6-sol",
+      "effort": "low"
+    }
+  ],
+  "startedAt": "2026-09-23T05:16:51.418Z",
+  "endedAt": "2026-09-23T05:19:14.723Z",
+  "sessionElapsedSeconds": 143.305,
+  "usage": {
+    "input_tokens": 544383,
+    "cached_input_tokens": 505088,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1680,
+    "reasoning_output_tokens": 84
+  },
+  "uncachedInputTokens": 39295,
+  "completedToolOperations": 18,
+  "toolCounts": {
+    "command_execution": 12,
+    "mcp_tool_call": 6
+  },
+  "failedCommandOperations": 1,
+  "prompt": {
+    "charactersWithActualToken": 473,
+    "wordsWithActualToken": 62,
+    "charactersWithTokenPlaceholder": 449,
+    "wordsWithTokenPlaceholder": 62,
+    "referencesExistingReadme": true,
+    "contentOmitted": true
+  },
+  "flow": {
+    "dispatchCalls": 1,
+    "submitted": true,
+    "chatComposerObserved": true,
+    "mode": "xh",
+    "modeEvidence": "dispatch xh returned submitted; helper enforces mode",
+    "setupReferenceRead": true,
+    "setupReferenceReadPurpose": "Unnecessary connector identity lookup using rg, followed by filesystem discovery despite known documented setup.json location",
+    "pluginsSettingsRevisit": false,
+    "existingConnectorSelected": true,
+    "sameConnectorAsBaseline": true,
+    "finishCalls": 1,
+    "resultStatus": "completed",
+    "integrity": "verified",
+    "collected": true,
+    "artifactHashIndependentlyVerified": true,
+    "cleanup": "deleted_and_closed",
+    "cleanupReturnedOpenTabs": []
+  },
+  "fixtureReview": {
+    "requirementsReviewed": true,
+    "implementationMatchesRequirements": true,
+    "savedTestEvidence": "npm test PASS; 3 passed, 0 failed",
+    "cliRepeatedTestRun": false,
+    "cliRepeatedArtifactRead": false,
+    "reviewerAdditionalTestRun": false,
+    "finalResponseAccuratelyAttributesTestsToWebGpt": true
+  },
+  "observations": [
+    "The final instruction achieved both targeted sampled behaviors: references existing README and avoids duplicate artifact read/test rerun.",
+    "CLI still read config.json unnecessarily, searched setup.md for identity, listed skill files, and searched for setup.json before reading its documented location. This is remaining avoidable preparation cost.",
+    "AGENTS.md search exited 1 when absent; no task failure.",
+    "Only one run per instruction variant. Browser initial state, tool batching, caching, and stochastic choices confound token/time comparisons; not quota savings proof."
+  ],
+  "comparison": {
+    "baseline": {
+      "sameModelAndEffort": true,
+      "sameTaskScope": true,
+      "sameModeAndConnector": true,
+      "sameSuccessfulResultAndCleanup": true,
+      "toolOperationsDelta": 3,
+      "uncachedInputTokensDelta": -2524,
+      "outputTokensDelta": -540,
+      "promptCharactersDelta": -41,
+      "promptWordsDelta": -2
+    },
+    "candidate": {
+      "sameModelAndEffort": true,
+      "sameTaskScope": true,
+      "sameModeAndConnector": true,
+      "sameSuccessfulResultAndCleanup": true,
+      "toolOperationsDelta": 4,
+      "uncachedInputTokensDelta": 9087,
+      "outputTokensDelta": 185,
+      "promptCharactersDelta": -147,
+      "promptWordsDelta": -20
+    }
+  },
+  "redaction": "No task tokens, private URLs, raw prompts, sidebar text or configuration values included."
+}

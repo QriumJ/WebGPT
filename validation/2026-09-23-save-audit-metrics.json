@@ -1,0 +1,90 @@
+{
+  "cases": {
+    "A": {
+      "taskId": "8e6ea5fd-8a28-43ac-bd39-ce77847ffadd",
+      "thread": "01a0cc5d-d925-7241-98f4-978e44df7d5f",
+      "model": "gpt-6-sol",
+      "effort": "low",
+      "freshSession": true,
+      "completedTools": [
+        "submit_result"
+      ],
+      "toolErrors": 0,
+      "artifactExactMatch": true,
+      "hash": "021a5fb80f7473d8341186a5562835c300da6e09cbc564cf969c226284750cd9",
+      "collected": true,
+      "terminalEvidenceVerified": false,
+      "cleanup": "deleted_and_closed",
+      "usage": {
+        "input_tokens": 402165,
+        "cached_input_tokens": 344192,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2236,
+        "reasoning_output_tokens": 90
+      },
+      "completedToolOperations": 13
+    },
+    "B": {
+      "taskId": "df90b119-00e7-4e63-bb4d-4d64c69a3aa9",
+      "thread": "01a0cc5f-c730-7722-b5ea-d36f12ad0e34",
+      "model": "gpt-6-sol",
+      "effort": "low",
+      "freshSession": true,
+      "completedTools": [
+        "exec_command",
+        "write_stdin",
+        "submit_result"
+      ],
+      "toolErrors": 0,
+      "artifactExactMatch": true,
+      "hash": "021a5fb80f7473d8341186a5562835c300da6e09cbc564cf969c226284750cd9",
+      "collected": true,
+      "terminalEvidenceVerified": true,
+      "cleanup": "deleted_and_closed",
+      "usage": {
+        "input_tokens": 723345,
+        "cached_input_tokens": 672640,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3428,
+        "reasoning_output_tokens": 302
+      },
+      "completedToolOperations": 17
+    },
+    "C": {
+      "taskId": "1f1552a9-4fb6-42d6-8d3b-e36e9b865428",
+      "thread": "01a0cc62-a173-71e2-bcf7-d811132aa071",
+      "model": "gpt-6-sol",
+      "effort": "low",
+      "freshSession": true,
+      "completedTools": [
+        "exec_command",
+        "write_stdin",
+        "submit_result"
+      ],
+      "toolErrors": 0,
+      "artifactExactMatch": true,
+      "hash": "021a5fb80f7473d8341186a5562835c300da6e09cbc564cf969c226284750cd9",
+      "collected": true,
+      "terminalEvidenceVerified": true,
+      "cleanup": "deleted_and_closed",
+      "usage": {
+        "input_tokens": 597666,
+        "cached_input_tokens": 536192,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2982,
+        "reasoning_output_tokens": 178
+      },
+      "completedToolOperations": 17
+    }
+  },
+  "auditDisabledAfterTest": true,
+  "workerHealthy": true,
+  "tunnelUnchanged": true,
+  "allTasksCollected": true,
+  "tests": {
+    "passed": 146,
+    "failed": 0
+  },
+  "auditActualKeysWhitelistVerified": true,
+  "remainingOwnedTestTabs": []
+}

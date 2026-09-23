@@ -1,0 +1,77 @@
+{
+  "trial": "registration-identity",
+  "threadId": "01a0ccd3-251a-79a0-bf3f-41ae00df0c0e",
+  "modelContexts": [
+    {
+      "model": "gpt-6-sol",
+      "effort": "low"
+    }
+  ],
+  "startedAt": "2026-09-23T05:53:05.588Z",
+  "endedAt": "2026-09-23T05:55:57.072Z",
+  "sessionElapsedSeconds": 171.484,
+  "usage": {
+    "input_tokens": 672467,
+    "cached_input_tokens": 646528,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1784,
+    "reasoning_output_tokens": 77
+  },
+  "uncachedInputTokens": 25939,
+  "completedToolOperations": 15,
+  "toolCounts": {
+    "command_execution": 9,
+    "mcp_tool_call": 6
+  },
+  "failedCommandOperations": 2,
+  "prompt": {
+    "charactersWithActualToken": 407,
+    "wordsWithActualToken": 52,
+    "charactersWithTokenPlaceholder": 383,
+    "wordsWithTokenPlaceholder": 52,
+    "referencesReadme": true,
+    "containsReturnedConnectorName": true,
+    "containsReturnedTaskToken": true,
+    "contentOmitted": true
+  },
+  "flow": {
+    "registrationCalls": 1,
+    "connectionStatus": "ready",
+    "setupConfigReadsForIdentity": 0,
+    "directoryExplorationForIdentity": 0,
+    "helperSourceReads": 0,
+    "pluginsSettingsRevisits": 0,
+    "returnedRegistrationIdObservedInConnectorUI": true,
+    "chatComposerObserved": true,
+    "mode": "xh",
+    "modeEvidence": "dispatch xh returned submitted; helper enforces mode",
+    "dispatchCalls": 1,
+    "finishCalls": 1,
+    "integrity": "verified",
+    "collected": true,
+    "artifactHashIndependentlyVerified": true,
+    "persistedTaskStatus": "completed",
+    "persistedTaskCollected": true,
+    "persistedCwdMatches": true,
+    "cleanup": "deleted_and_closed",
+    "cleanupReturnedOpenTabs": [],
+    "duplicateArtifactRead": false,
+    "duplicateCliTestRun": false
+  },
+  "fixtureReview": {
+    "implementationMatchesReadme": true,
+    "savedTestsPassed": 2,
+    "savedTestsFailed": 0,
+    "independentNodeTestPassed": 2,
+    "independentNodeTestFailed": 0,
+    "additionalAcceptance": "PASS: empty input; frozen array unchanged; Unicode trim/lowercase/dedup/order; 9 invalid input TypeError cases",
+    "reasonForIndependentChecks": "Explicit parent verification of changed client registration integration and delivered fixture acceptance."
+  },
+  "observations": [
+    "Targeted identity lookup overhead disappeared: register returned ready metadata and CLI selected the existing connector without setup/config/directory identity exploration.",
+    "One absent AGENTS.md search and git inspection outside repository still failed noncritically. These were project review steps, not connector identity lookup.",
+    "Saved result evidence was accepted by CLI without rereading artifact or repeating tests. Reviewer separately verified as explicitly requested.",
+    "Single fresh live run confirms behavior, not repeatability or actual account quota savings."
+  ],
+  "redaction": "No raw prompts, task tokens, private URLs, sidebar text or configuration values included."
+}

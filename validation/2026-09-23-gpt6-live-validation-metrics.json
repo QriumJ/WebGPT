@@ -1,0 +1,102 @@
+{
+  "recovery": {
+    "phase": "recovery",
+    "thread": "01a0cc25-a1a3-7e22-a9d7-156d3dc41843",
+    "completed": false,
+    "operations": {
+      "command_execution": 21,
+      "mcp_tool_call": 58
+    },
+    "model": "gpt-6-sol",
+    "effort": "low",
+    "interruptedByParentForUserSteering": true,
+    "reportedUsageBeforeInterruption": {
+      "input_tokens": 5517161,
+      "cached_input_tokens": 5410048,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 9581,
+      "reasoning_output_tokens": 1901,
+      "total_tokens": 5526742
+    }
+  },
+  "install": {
+    "phase": "install",
+    "thread": "01a0cc30-17aa-73a2-9122-9a3e81bd1860",
+    "completed": true,
+    "operations": {
+      "command_execution": 34,
+      "mcp_tool_call": 47
+    },
+    "usage": {
+      "input_tokens": 5130506,
+      "cached_input_tokens": 4973824,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 13472,
+      "reasoning_output_tokens": 1928
+    },
+    "model": "gpt-6-sol",
+    "effort": "low"
+  },
+  "result-diagnostic": {
+    "phase": "result-diagnostic",
+    "thread": "01a0cc3b-9334-7082-b9fe-d711eab6130f",
+    "completed": true,
+    "operations": {
+      "command_execution": 11,
+      "mcp_tool_call": 5,
+      "file_change": 1
+    },
+    "usage": {
+      "input_tokens": 500787,
+      "cached_input_tokens": 457984,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 3052,
+      "reasoning_output_tokens": 261
+    },
+    "model": "gpt-6-sol",
+    "effort": "low"
+  },
+  "smoke-retest": {
+    "phase": "smoke-retest",
+    "thread": "01a0cc3e-2b3b-7a91-8d64-ea9f879f55e7",
+    "completed": true,
+    "operations": {
+      "command_execution": 8,
+      "mcp_tool_call": 7,
+      "file_change": 1
+    },
+    "usage": {
+      "input_tokens": 511661,
+      "cached_input_tokens": 471680,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 3228,
+      "reasoning_output_tokens": 189
+    },
+    "model": "gpt-6-sol",
+    "effort": "low"
+  },
+  "cleanup-recheck": {
+    "phase": "cleanup-recheck",
+    "thread": "01a0cc45-8b8c-7e42-80b1-948d9419d75d",
+    "completed": true,
+    "operations": {
+      "command_execution": 3,
+      "mcp_tool_call": 5,
+      "file_change": 1
+    },
+    "usage": {
+      "input_tokens": 273389,
+      "cached_input_tokens": 238848,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1138,
+      "reasoning_output_tokens": 120
+    },
+    "model": "gpt-6-sol",
+    "effort": "low"
+  },
+  "scopeNotes": [
+    "Every phase used a new codex exec session, not exec resume.",
+    "Recovery was interrupted to apply a new user permission preference; its token usage is the last reported cumulative usage before interruption.",
+    "Counts exclude parent and native review agents; tokens do not establish account quota savings."
+  ]
+}

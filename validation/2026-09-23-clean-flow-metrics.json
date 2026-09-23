@@ -1,0 +1,42 @@
+{
+  "install": {
+    "thread": "01a0cc70-8f7a-7251-bf36-958297dae61a",
+    "modelContexts": [
+      {
+        "model": "gpt-6-sol",
+        "effort": "low"
+      }
+    ],
+    "elapsedSeconds": 365.015,
+    "usage": {
+      "input_tokens": 5609071,
+      "cached_input_tokens": 5508864,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 8271,
+      "reasoning_output_tokens": 1060
+    },
+    "uncachedInputTokens": 100207,
+    "completedToolOperations": 82,
+    "parentInterventionsDuringCli": 0
+  },
+  "work": {
+    "thread": "01a0cc76-ac9d-7d53-8762-00a8574eb06c",
+    "modelContexts": [
+      {
+        "model": "gpt-6-sol",
+        "effort": "low"
+      }
+    ],
+    "elapsedSeconds": 144.408,
+    "usage": {
+      "input_tokens": 596810,
+      "cached_input_tokens": 557568,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1769,
+      "reasoning_output_tokens": 146
+    },
+    "uncachedInputTokens": 39242,
+    "completedToolOperations": 16,
+    "parentInterventionsDuringCli": 0
+  }
+}

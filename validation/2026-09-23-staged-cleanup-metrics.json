@@ -1,0 +1,72 @@
+{
+  "evidenceRoot": "/var/folders/nm/5t94y71s61x7r_trftjmltvh0000gn/T/webgpt-cleanup-staged-1fom7q7z",
+  "thread": "01a0cc0a-fa8c-7911-ac5c-f627ad0633f1",
+  "modelProof": [
+    {
+      "model": "gpt-5.6-sol",
+      "effort": "low"
+    }
+  ],
+  "cumulativeUsage": {
+    "input_tokens": 543109,
+    "cached_input_tokens": 502528,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 3160,
+    "reasoning_output_tokens": 703,
+    "uncached_input_tokens": 40581
+  },
+  "toolCounts": {
+    "command_execution": 3,
+    "mcp_tool_call": 9,
+    "file_change": 2
+  },
+  "browserCallTitles": [
+    "Initialize signed-in Chrome",
+    "Open owned Chat conversation",
+    "Verify Chat and send one XH prompt",
+    "Verify the existing WebGPT reply",
+    "Prepare deletion and preserve tab",
+    "js_reset",
+    "Reacquire the prepared cleanup tab",
+    "Confirm permanent deletion and close owned tab",
+    "Capture consumed deletion receipt"
+  ],
+  "preparedReceipt": {
+    "status": "deletion_prepared",
+    "tabId": "1451557525",
+    "url": "https://chatgpt.com/c/6ab3361e-37b4-83e8-8e72-4a6bd5ee87fb",
+    "title": "Reply ready",
+    "consumed": true
+  },
+  "evidence": {
+    "surface": "Chat",
+    "mode": "Extra High",
+    "prompt": "Reply READY only. Do not use tools.",
+    "submission": "submitted_once",
+    "reply": "READY",
+    "replyStatus": "completed",
+    "replyObservations": 2,
+    "deletion": "deleted_and_closed",
+    "retention": "completed",
+    "tabId": "1451557525",
+    "url": "https://chatgpt.com/c/6ab3361e-37b4-83e8-8e72-4a6bd5ee87fb",
+    "title": "Reply ready",
+    "receiptConsumed": true,
+    "runtimeResetCount": 1,
+    "error": null
+  },
+  "snapshot": {
+    "SKILL.md": "41834cdafab496bc7548033e861a5d6f3e0d9a02c5d8a4968c577075ef6c3aea",
+    "references/recovery.md": "c0374b2f53e9ed9f01fe20b474ec8bbea41c0e65d2bc91199de50e721cb8a050",
+    "scripts/browser.mjs": "8f969ebde8a3d2eaa864a189825289a33e3ae58cfe72ef4beacaa506eaeaafc4"
+  },
+  "localTests": {
+    "passed": 116,
+    "total": 116
+  },
+  "limitations": [
+    "Test intentionally separates preparation and final action; not a claim that runtime confirmation is removed.",
+    "A consumed receipt and module memory are not a durable cross-runtime transaction log. Never reload old pre-click state after an ambiguous attempt.",
+    "No total-workflow savings are claimed from this staged test."
+  ]
+}

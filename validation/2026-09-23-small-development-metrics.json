@@ -1,0 +1,209 @@
+{
+  "date": "2026-09-23",
+  "fixture": "unique-by-id",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "low",
+  "privateEvidenceRoot": "/var/folders/nm/5t94y71s61x7r_trftjmltvh0000gn/T/webgpt-small-eval-v_65a3hp",
+  "runs": {
+    "direct": {
+      "threadId": "01a0ca68-9087-7b01-b14f-1c474677ffb5",
+      "usage": {
+        "input_tokens": 101248,
+        "cached_input_tokens": 89088,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1447,
+        "reasoning_output_tokens": 305,
+        "uncached_input_tokens": 12160
+      },
+      "completedItems": {
+        "agent_message": 4,
+        "command_execution": 4,
+        "file_change": 1
+      },
+      "toolOperations": 5,
+      "extraParentInstructions": 0,
+      "independentEvaluation": {
+        "passed": 7,
+        "total": 7,
+        "results": [
+          {
+            "name": "zero",
+            "status": "PASS"
+          },
+          {
+            "name": "empty string",
+            "status": "PASS"
+          },
+          {
+            "name": "missing IDs",
+            "status": "PASS"
+          },
+          {
+            "name": "order and first object",
+            "status": "PASS"
+          },
+          {
+            "name": "no mutation",
+            "status": "PASS"
+          },
+          {
+            "name": "ID types remain distinct",
+            "status": "PASS"
+          },
+          {
+            "name": "empty input",
+            "status": "PASS"
+          }
+        ]
+      },
+      "files": {
+        "package.json": "bedeb6417d68f8938824fb280f84d0c260cd7a46c33d884f1af5d09482b9179d",
+        "src/unique.mjs": "7a7626ca439b2d1c53c5fdb4c3fdbc6a907f1d061387b761e1b956b9ad38dff2",
+        "test/unique.test.mjs": "f34110addbd17d7397233c4ab4a1b59bd664a5ea4a102205ea35f86b60193578"
+      }
+    },
+    "delegated": {
+      "threadId": "01a0ca6f-3044-7600-bf95-72f225a97ef9",
+      "usage": {
+        "input_tokens": 799887,
+        "cached_input_tokens": 754944,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3823,
+        "reasoning_output_tokens": 840,
+        "uncached_input_tokens": 44943
+      },
+      "completedItems": {
+        "agent_message": 3,
+        "command_execution": 8,
+        "mcp_tool_call": 11,
+        "file_change": 1
+      },
+      "toolOperations": 20,
+      "extraParentInstructions": 0,
+      "independentEvaluation": {
+        "passed": 7,
+        "total": 7,
+        "results": [
+          {
+            "name": "zero",
+            "status": "PASS"
+          },
+          {
+            "name": "empty string",
+            "status": "PASS"
+          },
+          {
+            "name": "missing IDs",
+            "status": "PASS"
+          },
+          {
+            "name": "order and first object",
+            "status": "PASS"
+          },
+          {
+            "name": "no mutation",
+            "status": "PASS"
+          },
+          {
+            "name": "ID types remain distinct",
+            "status": "PASS"
+          },
+          {
+            "name": "empty input",
+            "status": "PASS"
+          }
+        ]
+      },
+      "files": {
+        "package.json": "bedeb6417d68f8938824fb280f84d0c260cd7a46c33d884f1af5d09482b9179d",
+        "src/unique.mjs": "a9e07a503b5ccf86188ce8eb421477df562fe68ea15abcbd117bc733087474cc",
+        "test/unique.test.mjs": "28ee4117fa23cc6c70fd6f091428d7e9c11710e548826a2bef4b97290e0f4356"
+      }
+    },
+    "setup": {
+      "threadId": "01a0ca68-df0b-7300-a2b8-3ece14e34ade",
+      "usage": {
+        "input_tokens": 1675136,
+        "cached_input_tokens": 1616256,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 7792,
+        "reasoning_output_tokens": 2331,
+        "uncached_input_tokens": 58880
+      },
+      "completedItems": {
+        "agent_message": 5,
+        "command_execution": 8,
+        "mcp_tool_call": 24,
+        "file_change": 1
+      },
+      "toolOperations": 33,
+      "extraParentInstructions": 0
+    }
+  },
+  "limitations": [
+    "Single paired small task; no repeated distribution or break-even threshold established.",
+    "CLI token counters are not measured Codex quota debits.",
+    "Setup/smoke and teardown costs are separate from delegated development.",
+    "Parent preparation, evaluation and reporting usage excluded from these child CLI counters.",
+    "No controlled isolation of task size from permission/setup state; the previous failure cause remains unproven.",
+    "Controller evidence file is measurement overhead, not WebGPT implementation."
+  ],
+  "cleanup": {
+    "taskChatsDeleted": true,
+    "taskTabsClosed": true,
+    "connectorRemoved": true,
+    "testWorkerAndTunnelStopped": true,
+    "workerExitCode": 0,
+    "tunnelExitCode": 0,
+    "testPortsHaveListeners": false
+  },
+  "setupAndTeardownCumulativeUsage": {
+    "input_tokens": 3780661,
+    "cached_input_tokens": 3680896,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 11951,
+    "reasoning_output_tokens": 3557,
+    "uncached_input_tokens": 99765
+  },
+  "teardownIncrementalUsage": {
+    "input_tokens": 2105525,
+    "cached_input_tokens": 2064640,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 4159,
+    "reasoning_output_tokens": 1226,
+    "uncached_input_tokens": 40885
+  },
+  "teardownCompletedItems": {
+    "agent_message": 3,
+    "command_execution": 2,
+    "mcp_tool_call": 26,
+    "file_change": 1
+  },
+  "teardownExtraParentRecoveryInstructions": 0,
+  "teardownEvidence": {
+    "evaluation": "WebGPT Small Eval 20260923",
+    "date": "2026-09-23",
+    "status": "PASS",
+    "connector": {
+      "name": "WebGPT Small Eval 20260923",
+      "removalMethod": "documented signed-in ChatGPT browser UI",
+      "removed": true,
+      "absenceVerification": "Exact-name plugin search returned no connector entry"
+    },
+    "browser": {
+      "name": "Chrome",
+      "ownedSettingsTabsClosed": true,
+      "unrelatedTabsPreserved": true
+    },
+    "services": {
+      "worker": "untouched",
+      "httpsForwarder": "untouched"
+    },
+    "credentialsIncluded": false
+  },
+  "seedEvaluation": {
+    "passed": 2,
+    "total": 7,
+    "targetDefectDetected": true
+  }
+}

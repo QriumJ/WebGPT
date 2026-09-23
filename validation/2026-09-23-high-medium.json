@@ -1,0 +1,32 @@
+{
+  "tests": [
+    {
+      "mode": "h",
+      "observed_label": "High",
+      "dispatch_status": "submitted",
+      "reply": "HIGH_MODE_OK",
+      "deletion_status": "deleted",
+      "tab_closure": "closed"
+    },
+    {
+      "mode": "m",
+      "observed_label": "중간",
+      "dispatch_status": "submitted",
+      "reply": "MEDIUM_MODE_OK",
+      "deletion_status": "deleted",
+      "tab_closure": "closed"
+    }
+  ],
+  "model": "gpt-6-sol",
+  "reasoning_effort": "low",
+  "fresh_cli_thread": "01a0cce6-e2fc-76c2-9724-898e3e5d0870",
+  "automated_tests": {
+    "passed": 157,
+    "failed": 0
+  },
+  "browser_helper_sha256": "bf4e074c84d9b519622c7ada35d508148af2c316308322b63c2572e2e1e06513",
+  "final_attempts": {
+    "h": 1,
+    "m": 1
+  }
+}

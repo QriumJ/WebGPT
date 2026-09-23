@@ -1,0 +1,31 @@
+{
+  "thread": "01a0cc17-4c69-7ea1-8aa8-367ab90f17c8",
+  "model": "gpt-5.6-sol",
+  "effort": "low",
+  "scope": "isolated live accountless tunnel lifecycle and client guard; browser repair NOT_RUN",
+  "tests": {
+    "pass": 127,
+    "fail": 0
+  },
+  "live": {
+    "scope": "isolated accountless tunnel restart and client guard validation",
+    "realNetwork": "PASS",
+    "originDiscovered": "PASS",
+    "matchingGuard": "PASS",
+    "restartMismatchGuard": "PASS",
+    "stoppedOpenGuard": "PASS",
+    "taskStateAbsentBeforeAndAfterBlockedRegister": "PASS",
+    "firstOriginSha256": "467bc248ef2a465308f7f65a8c5552b4c06757f2319e59f51cd01442caf1883a",
+    "secondOriginSha256": "26aaf1be319776ef9f2e050388ec2ef1e891f450a99b51e5355e9dc2861d01b2",
+    "finalTunnelStatus": "stopped",
+    "cleanup": "PASS"
+  },
+  "usage": {
+    "input_tokens": 363807,
+    "cached_input_tokens": 296448,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 5494,
+    "reasoning_output_tokens": 985
+  },
+  "completedToolOperations": 11
+}

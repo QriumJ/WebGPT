@@ -1,0 +1,31 @@
+import { pathToFileURL } from 'node:url';
+import { resolve, join } from 'node:path';
+import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { gzipSync } from 'node:zlib';
+import { spawnSync } from 'node:child_process';
+import assert from 'node:assert/strict';
+const project=resolve(process.argv[2]);
+const {summarize}=await import(pathToFileURL(join(project,'src/summary.mjs')));
+const results=[];
+const check=(name,fn)=>{try{fn();results.push({name,status:'PASS'});}catch(e){results.push({name,status:'FAIL',error:e.message});}};
+const event=(id,extra={})=>({id,ts:'2026-01-01T00:00:00Z',service:'api',durationMs:10,status:200,...extra});
+const nd=rows=>rows.map(x=>JSON.stringify(x)).join('\n');
+const cli=(args=[],input='')=>spawnSync(process.execPath,[join(project,'src/cli.mjs'),...args],{input,encoding:'utf8'});
+check('blank and CRLF physical line numbers',()=>{assert.deepEqual(summarize('\r\n  \n'),{count:0,services:[],days:[]});assert.throws(()=>summarize('\n'+nd([event('a')])+'\r\n\n{'),/4/);});
+check('aggregation sorting and nearest-rank p95',()=>{let rows=Array.from({length:20},(_,i)=>event('a'+i,{durationMs:i+1,status:i%2?500:200}));rows.push(event('z',{service:'z',durationMs:0}));let out=summarize(nd(rows));assert.equal(out.count,21);assert.deepEqual(out.services,[{service:'api',count:20,errors:10,totalMs:210,meanMs:10.5,p95Ms:19},{service:'z',count:1,errors:0,totalMs:0,meanMs:0,p95Ms:0}]);});
+check('deduplicate before range filter and keep first',()=>{const rows=[event('same',{ts:'2025-12-31T23:59:59Z'}),event('same'),event('new')];assert.equal(summarize(nd(rows),{from:'2026-01-01T00:00:00Z'}).count,1);});
+check('inclusive lower exclusive upper and timezone instants',()=>{const rows=[event('a',{ts:'2026-01-01T09:00:00+09:00'}),event('b',{ts:'2026-01-01T00:00:01Z'})];assert.equal(summarize(nd(rows),{from:'2026-01-01T00:00:00Z',to:'2026-01-01T00:00:01Z'}).count,1);});
+check('UTC day grouping',()=>assert.deepEqual(summarize(nd([event('a',{ts:'2026-01-01T01:00:00+09:00'}),event('b')])).days,[{day:'2025-12-31',count:1},{day:'2026-01-01',count:1}]));
+check('invalid calendar timestamps and range validation',()=>{for(const ts of ['2026-02-30T00:00:00Z','2026-01-01','2026-01-01T00:00:00','not-a-date'])assert.throws(()=>summarize(nd([event('a',{ts})])));assert.throws(()=>summarize('',{from:'2026-02-30T00:00:00Z'}));assert.throws(()=>summarize('',{from:'2026-02-01T00:00:00Z',to:'2026-01-01T00:00:00Z'}));assert.equal(summarize(nd([event('a')]),{from:'2026-01-01T00:00:00Z',to:'2026-01-01T00:00:00Z'}).count,0);});
+check('record types and all required fields',()=>{for(const row of [null,[],1,{},...Object.keys(event('a')).map(k=>{const x=event('a');delete x[k];return x;}),event('a',{durationMs:'10'}),event('a',{durationMs:-1}),event('a',{status:200.5}),event('a',{status:600}),event('a',{service:''})])assert.throws(()=>summarize(nd([row])),/\b1\b/);});
+check('validate duplicate and filtered records',()=>{assert.throws(()=>summarize(nd([event('a'),event('a',{durationMs:-1})])),/2/);assert.throws(()=>summarize(nd([event('a',{status:99})]),{from:'2027-01-01T00:00:00Z'}),/1/);});
+check('options are not mutated',()=>{const options=Object.freeze({from:'2026-01-01T00:00:00Z'});summarize(nd([event('a')]),options);assert.deepEqual(options,{from:'2026-01-01T00:00:00Z'});});
+check('CLI stdin successful JSON and newline',()=>{const p=cli([],nd([event('a')]));assert.equal(p.status,0);assert.equal(p.stderr,'');assert.ok(p.stdout.endsWith('\n'));assert.equal(JSON.parse(p.stdout).count,1);});
+const temp=mkdtempSync(join(tmpdir(),'event-summary-judge-'));
+try {
+ check('CLI gzip file and date options',()=>{const f=join(temp,'input.ndjson.gz');writeFileSync(f,gzipSync(nd([event('a')])));const p=cli(['--from','2026-01-01T00:00:00Z','--to','2026-01-02T00:00:00Z',f]);assert.equal(p.status,0);assert.equal(JSON.parse(p.stdout).count,1);});
+ check('CLI failures exit 2 without stdout or stack trace',()=>{const bad=join(temp,'bad.gz');writeFileSync(bad,'not gzip');for(const args of [['--bad'],['--from'],['--from','x','--from','y'],['one','two'],[join(temp,'absent')],[bad]]){const p=cli(args);assert.equal(p.status,2,JSON.stringify(args));assert.equal(p.stdout,'');assert.ok(p.stderr.trim());assert.doesNotMatch(p.stderr,/\n\s+at /);}const p=cli(['-'],'not-json');assert.equal(p.status,2);assert.equal(p.stdout,'');assert.match(p.stderr,/1/);});
+} finally {rmSync(temp,{recursive:true,force:true});}
+console.log(JSON.stringify({passed:results.filter(x=>x.status==='PASS').length,failed:results.filter(x=>x.status==='FAIL').length,results},null,2));
+process.exitCode=results.some(x=>x.status==='FAIL')?1:0;

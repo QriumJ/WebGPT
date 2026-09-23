@@ -1,0 +1,65 @@
+{
+  "trial": "baseline",
+  "threadId": "01a0ccaa-613f-7530-9ac2-89491868591d",
+  "modelContexts": [
+    {
+      "model": "gpt-6-sol",
+      "effort": "low"
+    }
+  ],
+  "freshSessionEvidence": "One thread.started; one turn_context; no resume invocation in trial command evidence reviewed by parent.",
+  "startedAt": "2026-09-23T05:08:33.693Z",
+  "endedAt": "2026-09-23T05:11:31.524Z",
+  "sessionElapsedSeconds": 177.831,
+  "usage": {
+    "input_tokens": 835163,
+    "cached_input_tokens": 793344,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2220,
+    "reasoning_output_tokens": 195
+  },
+  "uncachedInputTokens": 41819,
+  "completedToolOperations": 15,
+  "toolCounts": {
+    "command_execution": 9,
+    "mcp_tool_call": 6
+  },
+  "failedCommandOperations": 2,
+  "prompt": {
+    "charactersWithActualToken": 514,
+    "wordsWithActualToken": 64,
+    "charactersWithTokenPlaceholder": 490,
+    "wordsWithTokenPlaceholder": 64,
+    "contentOmitted": true
+  },
+  "flow": {
+    "dispatchCalls": 1,
+    "submitted": true,
+    "chatComposerObserved": true,
+    "mode": "xh",
+    "modeEvidence": "dispatch called with xh and returned submitted; helper enforces visible mode",
+    "setupReferenceRead": false,
+    "pluginsSettingsRevisit": false,
+    "existingConnectorSelected": true,
+    "finishCalls": 1,
+    "resultStatus": "completed",
+    "integrity": "verified",
+    "collected": true,
+    "artifactHashIndependentlyVerified": true,
+    "cleanup": "deleted_and_closed",
+    "cleanupReturnedOpenTabs": []
+  },
+  "fixtureReview": {
+    "requirementsReviewed": true,
+    "implementationMatchesRequirements": true,
+    "independentCommand": "node --test",
+    "passed": 3,
+    "failed": 0
+  },
+  "observations": [
+    "CLI unnecessarily read config.json rather than setup.json, bringing configuration secrets into its private context; no raw config included here.",
+    "rg for missing AGENTS.md exited 1; git diff in non-repository fixture exited nonzero. Neither prevented completion.",
+    "Full browser state and automatic screenshot metadata inflate context; tool counts and elapsed time are observations, not quota-savings proof."
+  ],
+  "redaction": "No task tokens, private URLs, raw prompts, sidebar text, or configuration values included."
+}

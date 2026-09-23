@@ -1,0 +1,84 @@
+{
+  "threadId": "01a0cc70-8f7a-7251-bf36-958297dae61a",
+  "model": "gpt-6-sol",
+  "reasoningEffort": "low",
+  "freshSession": true,
+  "installedManifest": {
+    "fileCount": 27,
+    "mismatches": []
+  },
+  "unitTests": {
+    "passed": 146,
+    "failed": 0,
+    "exitCode": 0
+  },
+  "setup": {
+    "connectorName": "WebGPT Worker Local 20260923",
+    "registrationId": "asdk_app_6ab350f38a248191a3ad3f5a40f0a2b2",
+    "surface": "Chat",
+    "modeRecorded": "Extra High",
+    "chatLaunchUrlPresent": false,
+    "toolDiscoveryCount": 5,
+    "operationalPass": true
+  },
+  "smoke": {
+    "saved": true,
+    "integrityVerified": true,
+    "collected": true,
+    "artifactHashRechecked": true,
+    "backupDeadlineCleared": true,
+    "reportedCommandOutput": "WEBGPT_SMOKE_OK",
+    "reportedExitCode": 0,
+    "independentTerminalAuditCaptured": false
+  },
+  "permissions": {
+    "alwaysAllowButtonObserved": true,
+    "matchingButtonClicked": true,
+    "additionalUserConfirmationAsked": false
+  },
+  "cleanup": {
+    "status": "deleted_and_closed",
+    "ownedTabId": "1451557657"
+  },
+  "findings": [
+    {
+      "severity": "material",
+      "finding": "Four old disconnected connector registrations remained visible in Personal list; original connector name rejected as already existing. CLI created unique WebGPT Worker Local 20260923. Account-side complete removal not verified."
+    },
+    {
+      "severity": "minor",
+      "finding": "One redundant finish after backupDue before reading recovery guidance and using resume."
+    },
+    {
+      "severity": "minor",
+      "finding": "Initial plugin-creator/settings exploration required numerous UI calls before reaching custom MCP connection form."
+    }
+  ],
+  "limitations": [
+    "Current local candidate installation, not public remote-main install.",
+    "Terminal output and exit status are preserved in WebGPT submitted result; no independent terminal audit was enabled for this setup run.",
+    "Browser was not touched during independent audit."
+  ],
+  "toolOperations": 82,
+  "usage": {
+    "input_tokens": 5609071,
+    "cached_input_tokens": 5508864,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 8271,
+    "reasoning_output_tokens": 1060
+  },
+  "modeVerification": {
+    "observedHelperCalls": [],
+    "extraHighIndependentlyVerified": true,
+    "limitation": null,
+    "evidence": "Visible current mode pop-up button labeled \ub9e4\uc6b0 \ub192\uc74c (Extra High)",
+    "evidenceEventIndices": [
+      141,
+      147,
+      151,
+      153,
+      162
+    ],
+    "explicitModeSwitchObserved": false
+  }
+}

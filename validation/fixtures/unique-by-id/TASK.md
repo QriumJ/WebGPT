@@ -1,0 +1,1 @@
+Fix uniqueById: id 0 and the empty string are valid IDs and must be retained. Only null or undefined IDs are omitted. Keep the first item for each ID, preserve input order and do not mutate input. Change only src/unique.mjs and test/unique.test.mjs; add regression coverage and run npm test. No new features, CLI, dependencies or documentation.

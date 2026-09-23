@@ -1,0 +1,292 @@
+{
+  "candidateHashes": {
+    "SKILL.md": "7ca79457e4996295650d5492f397e255a355c01225d150dc83e380c31809fe96",
+    "references/workspace.md": "6591a0583b0187c5a75b742ad6a73a5eb561926621a6426b2b501a08c5676289",
+    "scripts/browser.mjs": "67d5160f8a64d7af7fd5ad8bf39b98e7c618e53d39bebbc66485a00b9eb14bcc",
+    "scripts/client.mjs": "b021e074ebc93085ce62c9862d20df9f73b40e40736abd95defd6ee3a3f95c74"
+  },
+  "unitTests": {
+    "passed": 74,
+    "total": 74
+  },
+  "skillValidation": "PASS",
+  "baselineMetrics": "2026-09-23-small-development-metrics.json",
+  "fixture": "unique-by-id",
+  "privateEvidenceRoot": "/var/folders/nm/5t94y71s61x7r_trftjmltvh0000gn/T/webgpt-fast-eval-v50cwx33",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "low",
+  "finalCandidateHashes": {
+    "SKILL.md": "a2440ecc4da96d0d8f702c97fe28869aa5e3b51a2aa3907f643b453e62420d08",
+    "references/workspace.md": "fd8a5ff1d635ab735a6b32f998a0ca377d8c757d3579fefde5095868174c8f64",
+    "scripts/browser.mjs": "5f48fbf2cf739e82dd783e9b96910d133f1464a774ae5dc267fcf8e3d7f2960b",
+    "scripts/client.mjs": "b021e074ebc93085ce62c9862d20df9f73b40e40736abd95defd6ee3a3f95c74"
+  },
+  "pilotOutcome": "Unsuccessful: unchanged seed, no saved result; parent cancelled after diagnostic continuation. Not a savings sample.",
+  "pilotAdditionalParentInstructions": 1,
+  "pilotParentReadOnlyBrowserCalls": 3,
+  "pilotParentCancellation": true,
+  "runs": {
+    "setup": {
+      "threadId": "01a0cb94-6253-7c61-8f85-f4476e84c457",
+      "usage": {
+        "input_tokens": 3217673,
+        "cached_input_tokens": 3149056,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 9298,
+        "reasoning_output_tokens": 2967,
+        "uncached_input_tokens": 68617
+      },
+      "completedItems": {
+        "agent_message": 5,
+        "command_execution": 7,
+        "mcp_tool_call": 39,
+        "file_change": 2
+      },
+      "toolOperations": 48,
+      "verifiedTurnContexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        }
+      ]
+    },
+    "pilot": {
+      "threadId": "01a0cb9e-66f4-7a21-afeb-e2891a6654e0",
+      "usage": {
+        "input_tokens": 2120024,
+        "cached_input_tokens": 2061824,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 5422,
+        "reasoning_output_tokens": 1306,
+        "uncached_input_tokens": 58200
+      },
+      "completedItems": {
+        "agent_message": 5,
+        "command_execution": 7,
+        "mcp_tool_call": 11,
+        "file_change": 1
+      },
+      "toolOperations": 19,
+      "verifiedTurnContexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        },
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        }
+      ]
+    },
+    "final": {
+      "threadId": "01a0cbaa-6162-7172-98d0-433230f6bdee",
+      "usage": {
+        "input_tokens": 534142,
+        "cached_input_tokens": 457472,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3175,
+        "reasoning_output_tokens": 820,
+        "uncached_input_tokens": 76670
+      },
+      "completedItems": {
+        "agent_message": 3,
+        "command_execution": 6,
+        "mcp_tool_call": 8,
+        "file_change": 1
+      },
+      "toolOperations": 15,
+      "verifiedTurnContexts": [
+        {
+          "model": "gpt-5.6-sol",
+          "effort": "low"
+        }
+      ]
+    }
+  },
+  "baseline": {
+    "threadId": "01a0ca6f-3044-7600-bf95-72f225a97ef9",
+    "usage": {
+      "input_tokens": 799887,
+      "cached_input_tokens": 754944,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 3823,
+      "reasoning_output_tokens": 840,
+      "uncached_input_tokens": 44943
+    },
+    "completedItems": {
+      "agent_message": 3,
+      "command_execution": 8,
+      "mcp_tool_call": 11,
+      "file_change": 1
+    },
+    "toolOperations": 20,
+    "extraParentInstructions": 0,
+    "independentEvaluation": {
+      "passed": 7,
+      "total": 7,
+      "results": [
+        {
+          "name": "zero",
+          "status": "PASS"
+        },
+        {
+          "name": "empty string",
+          "status": "PASS"
+        },
+        {
+          "name": "missing IDs",
+          "status": "PASS"
+        },
+        {
+          "name": "order and first object",
+          "status": "PASS"
+        },
+        {
+          "name": "no mutation",
+          "status": "PASS"
+        },
+        {
+          "name": "ID types remain distinct",
+          "status": "PASS"
+        },
+        {
+          "name": "empty input",
+          "status": "PASS"
+        }
+      ]
+    },
+    "files": {
+      "package.json": "bedeb6417d68f8938824fb280f84d0c260cd7a46c33d884f1af5d09482b9179d",
+      "src/unique.mjs": "a9e07a503b5ccf86188ce8eb421477df562fe68ea15abcbd117bc733087474cc",
+      "test/unique.test.mjs": "28ee4117fa23cc6c70fd6f091428d7e9c11710e548826a2bef4b97290e0f4356"
+    }
+  },
+  "finalIndependentEvaluation": {
+    "passed": 7,
+    "total": 7,
+    "results": [
+      {
+        "name": "zero",
+        "status": "PASS"
+      },
+      {
+        "name": "empty string",
+        "status": "PASS"
+      },
+      {
+        "name": "missing IDs",
+        "status": "PASS"
+      },
+      {
+        "name": "order and first object",
+        "status": "PASS"
+      },
+      {
+        "name": "no mutation",
+        "status": "PASS"
+      },
+      {
+        "name": "ID types remain distinct",
+        "status": "PASS"
+      },
+      {
+        "name": "empty input",
+        "status": "PASS"
+      }
+    ]
+  },
+  "finalEvidence": {
+    "status": "completed",
+    "taskId": "348c2d1e-11a1-4f0a-9b5d-eacb7eb1e952",
+    "changedFiles": [
+      "src/unique.mjs",
+      "test/unique.test.mjs"
+    ],
+    "testOutcome": {
+      "status": "PASS",
+      "command": "npm test",
+      "summary": "3 tests passed, 0 failed"
+    },
+    "collection": {
+      "status": "collected",
+      "integrity": "verified"
+    },
+    "cleanup": {
+      "status": "deleted_and_closed",
+      "chatDeleted": true,
+      "ownedTabClosed": true,
+      "connectorPreserved": true
+    }
+  },
+  "pilotIndependentStatus": "NOT_RUN: seed files unchanged; workflow cancelled, no implementation result.",
+  "limitations": [
+    "One successful run per version; not a controlled distribution.",
+    "Final run used explicitly requested two-minute backup checks; baseline used default twenty minutes.",
+    "Cache state and permission prompts differed.",
+    "Total input token reduction is not measured Codex quota savings; uncached input increased.",
+    "Parent preparation, debugging, native CUA diagnostics, evaluation, reporting and subagent usage excluded from child CLI counters.",
+    "Pilot failure is retained and its costs are additional; cumulative resume counters are not double-counted."
+  ],
+  "setupAndTeardownCumulativeUsage": {
+    "input_tokens": 4552363,
+    "cached_input_tokens": 4462336,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 11483,
+    "reasoning_output_tokens": 3460,
+    "uncached_input_tokens": 90027
+  },
+  "teardownIncrementalUsage": {
+    "input_tokens": 1334690,
+    "cached_input_tokens": 1313280,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2185,
+    "reasoning_output_tokens": 493,
+    "uncached_input_tokens": 21410
+  },
+  "teardownCompletedItems": {
+    "agent_message": 2,
+    "command_execution": 3,
+    "mcp_tool_call": 12,
+    "file_change": 1
+  },
+  "teardownEvidence": {
+    "timestamp": "2026-09-23",
+    "status": "PASS",
+    "target": {
+      "type": "ChatGPT connector",
+      "name": "WebGPT Fast Eval 20260923",
+      "removed": true,
+      "verifiedAbsent": true
+    },
+    "method": "documented signed-in ChatGPT browser UI",
+    "preservation": {
+      "unrelatedConnectorsChanged": false,
+      "unrelatedTabsChanged": false,
+      "workerStopped": false,
+      "httpsForwarderStopped": false
+    },
+    "cleanup": {
+      "ownedSettingsTabClosed": true,
+      "unrelatedTabsRemaining": 2
+    },
+    "credentialsStored": false
+  },
+  "cleanup": {
+    "allTasksSettledAndCollected": true,
+    "ownedTaskChatsDeleted": true,
+    "ownedTabsClosed": true,
+    "connectorRemoved": true,
+    "workerExitCode": 0,
+    "tunnelExitCode": 0
+  },
+  "finalSnapshotMatchesCurrent": {
+    "SKILL.md": true,
+    "references/workspace.md": true,
+    "scripts/browser.mjs": true,
+    "scripts/client.mjs": true
+  }
+}
