@@ -10,31 +10,42 @@ Paste this into Codex:
 
 ```text
 Install https://github.com/Nhahan/WebGPT/tree/main/skills/webgpt
-Follow the included references/setup.md and set up everything needed.
-Handle installation, configuration and verification yourself; assume no setup knowledge.
-I authorize the local worker and HTTPS forwarding, sharing its private connection
-URL with my signed-in ChatGPT, and granting WebGPT full terminal access as my local
-OS user for projects I assign (the project folder is not a sandbox).
-Run the setup test, then permanently delete its test chats
-and close its tabs. Do not ask again for these approved actions.
-Ask only for sign-in or another action that genuinely requires me; continue afterward.
+Follow references/setup.md; install, configure and verify everything yourself.
+I authorize the local Worker, accountless HTTPS forwarding, sharing its private URL
+with my signed-in ChatGPT, and full terminal access as my OS user for assigned projects
+(the project folder is not a sandbox).
+Choose Always allow for WebGPT permission prompts. Run the setup test, permanently
+delete its chats and close its tabs. Do not ask again for these approved actions.
+Ask only for sign-in or another genuinely user-only step, then continue.
+Do not require a new tunnel account or domain.
 ```
 
 ## Use
 
-### Delegate with Codex — `xh` / `p`
+### Delegate with Codex — `xh` / `h` / `m` / `p`
 
 Codex sends the task to WebGPT and collects the result. Tell Codex:
 
 ```text
-Use webgpt xh as subagents to develop this project's planned features in parallel.
+Use webgpt xh to implement and test the CSV export described in this project's issue.
 ```
 
 ```text
 webgpt p Research this topic and summarize the findings.
 ```
 
-`xh` = Extra High · `p` = Pro.
+`xh` = Extra High (default) · `h` = High · `m` = Medium · `p` = Pro.
+Long aliases: `xhigh`, `high`, `medium`, `pro`. Medium may appear as Standard/표준 in the UI.
+
+Your requested workflow takes priority. For example:
+
+```text
+Use webgpt xh to implement and test the API. While it works, you implement the UI.
+```
+
+Without other instructions, Codex delegates a bounded task with its tests, waits quietly,
+and reviews the saved result once. Partial results preserve completed work for continuation.
+You can request progress checks, same-chat follow-ups, or keeping the task chat.
 
 ### Use ChatGPT yourself — `open`
 

@@ -1,137 +1,87 @@
 ---
 name: webgpt
-description: Use for WebGPT requests, including xh/xhigh, p/pro, or open. Delegate work to signed-in Web ChatGPT or open a user-controlled project terminal chat.
+description: Delegate work to signed-in Web ChatGPT when the user requests WebGPT (xh/xhigh, h/high, m/medium or p/pro), or open a user-controlled project terminal chat with webgpt open.
 ---
 
 # WebGPT
 
-Delegate to signed-in Web ChatGPT through documented, authorized browser controls.
-Write Codex-authored instructions to WebGPT in English by default; honor explicit language
-requests and preserve source text where needed. Keep the requested deliverable language unchanged.
-Read [setup.md](references/setup.md) only for an installation request or an observed missing
-capability. Normal delegation reads workspace.md, not setup.md or the worker source.
+Delegate bounded work to save Codex usage. User instructions about division of work, model,
+monitoring, permissions, follow-ups and retention override defaults. Never silently take over
+WebGPT's assignment; Codex may perform separately assigned work concurrently.
 
-## Open — user-controlled mode
+Keep Codex ↔ WebGPT coordination in English, preserving source quotations and the requested
+deliverable language. Reply in the user’s language unless they request another; leave browser UI language unchanged.
+**Every conversation must use Chat, never Work**, including setup tests, browser-only work and
+`open`. Verify Chat before composing or selecting a connector; return to Chat if a shortcut opens Work.
 
-For `webgpt open [project path]`, use the named project or current directory. This mode overrides
-all delegation monitoring and cleanup below. Read workspace.md for the existing connection.
-The request already authorizes creating the project's terminal connection, sharing its private URL
-with signed-in ChatGPT and accepting the matching connection dialogs. Do not ask for consent again;
-ask only for an action the user must personally perform, such as signing in.
-Run `node <skill>/scripts/client.mjs open [project path]` once. It returns a stable connection name
-and privately usable URL, reusing a live connection for the same project without renewing its lease.
-Open a new tab and select the returned connection name in the composer plugin menu. If present,
-handoff immediately: no setup reads, re-registration, process scans, probes or worker restart.
-Only if absent, register that exact name and URL through setup.md's connection steps, then select it.
-If `needsPublicOrigin` is returned, resolve the existing forwarding origin once and save
-`publicOrigin` in the worker config; do not repeatedly search old notes or change the tunnel.
-Never repoint an existing connection to a new session. Expired sessions receive fresh names and URLs.
-This connection exposes only token-free terminal tools and binds the project on the server.
-Preserve the current model unless specified. Do not type or send any message, task, token or probe;
-the user starts the conversation. Verify the selected connection and absence of sent messages,
-mark the tab as a deliverable using the browser's supported keep-open mechanism, and hand it over.
-If connection setup fails, cancel only a newly created session (`reused:false`), not a reused one;
-report the failure and never substitute a bootstrap
-message or an unconnected tab. Stop after handoff: no wait,
-collection, backup checks, chat deletion or tab closure. The user may send unlimited messages.
-The worker automatically revokes access after 24 hours without terminal use, checked within one
-minute; each successful terminal call renews it, and running commands are protected. Expiry never
-deletes chats, tabs or project files. The persistent worker, not Codex, handles expiry.
+## Route
 
-The existing local Node.js worker, not an LLM, handles saved results, completion notification and
-backup deadlines. Registration starts the deadline; completion/cancellation clears it automatically.
-WebGPT only performs the assignment and submits its result. Do not ask it to report periodically,
-start monitoring processes, or clean up chats. Codex receives the result and deletes the chat/tabs.
-Reuse the worker and one quiet wait process; do not add per-task daemons or cron jobs.
+- `webgpt open [path]`: follow [open.md](references/open.md); skip delegation below.
+- Worker delegation: read [workspace.md](references/workspace.md).
+- Explicit browser-only work: use [browser-reply.md](references/browser-reply.md); skip Worker commands.
+- Read [setup.md](references/setup.md) only for installation or missing capability, and
+  [recovery.md](references/recovery.md) only for actionable exceptions or same-chat follow-ups.
+  Client tunnel/connection errors require setup's origin recovery before dispatch.
 
-## Dispatch
+For Worker tasks, register first and use the returned `connection.name` and `connection.registrationId`.
+With `connection.status: ready`, skip configuration/setup reads, directory searches and Plugins
+rediscovery. Missing/invalid metadata routes to recovery.md; keep the registered task, do not register again.
 
-- Verify the requested UI mode: `xh|xhigh` = Extra High (default), `p|pro` = Pro.
-- Send exactly one user message per task chat. Prepare the complete assignment before sending;
-  never send follow-ups, corrections or continuation requests in that chat. If further work is
-  needed, preserve and close the original task, then use a new chat with the necessary context.
-- Explain the objective, necessary context and success criteria naturally. Let WebGPT choose
-  its tools and approach within the user's scope. Put the assignment only in that chat message;
-  do not duplicate it in registration files or generate task plans, ledgers or handoff documents
-  unless needed for the actual deliverable. The worker already saves the result.
-- For direct project work, use the WebGPT Worker terminal and
-  [workspace.md](references/workspace.md). Set the project cwd; it is not a sandbox.
-  Reuse verified setup; diagnose access only when unavailable or an actual call fails.
-  Report missing access instead of silently doing the work yourself.
-  Text-only tasks need no connector.
-- Reuse registration output for the task ID; retain owned chat/tab identifiers in the current
-  context. Do not create separate tracking files unless recovery genuinely requires one.
-- Prepare the complete prompt and registration before opening the task tab. Include its session
-  name in tab creation instead of a separate naming call when supported.
-- Batch tab creation, current-mode/composer observation, any grounded mode selection, prompt
-  entry and submission as far as documented controls allow. If the requested mode is already
-  visible, skip selection. Return to the model only for unknown controls, ambiguity or a required
-  gate; do not force a single blind call. Never invent model URL parameters or assume a mode.
-  Fill and send together, then verify submission before any retry.
+## Delegate
 
-For browser observations, use documented `getAXState({emit:false})` after actions as well as before
-them; output only lines needed for the next decision. Do not call bare `getAXState()` or write the
-whole returned string: either can reintroduce large automatic output. For example:
-`nodeRepl.write((await tab.getAXState({emit:false})).split('\n').filter(line => /Delete|Cancel/.test(line)).join('\n'))`.
-Choose the filter for the actual UI language and needed controls; expand only if it misses them.
-Reuse a visibly correct mode instead of reopening its settings. Request images only when text
-cannot resolve the next action. Preserve mandatory first-use output, fresh target grounding and
-permission gates; never echo image/base64 payloads as text or export the conversation by default.
+Assign one bounded deliverable with its relevant tests per new chat. Investigate only enough to
+specify the objective, context, constraints and success criteria; leave routine commands to WebGPT.
+Avoid open-ended projects, arbitrary duration limits and separate chats for tiny actions. Assign
+file ownership/worktrees for concurrent changes. No duplicate task documents or tracking files.
 
-After required browser initialization, import the pure CUA helpers where supported:
-`var {sendOnce, deleteAndClose} = await import('<installed-skill>/scripts/browser.mjs')`.
-Use `sendOnce(tab, prompt, 'xh'|'pro')` on the new owned tab; after collection use
-`deleteAndClose(tab, cua, browserId, ownedChatUrl)` after preserving the result and establishing
-ownership. Helpers return compact outcomes and stop on unknown controls; handle those
-with grounded UI actions. Never resend an unconfirmed submission. If imports are unavailable,
-use documented CUA directly. Do not reread helper source during normal use.
+Prepare one concise English prompt before opening the tab: task, necessary context/constraints and
+success criteria. Reference accessible project briefs by path instead of restating them.
+For Worker tasks, add the named connector/task token and “Save the final outcome
+through the Worker.” Tool schemas supply the completion protocol; do not repeat it. Never send the
+controller key or connection URL. Retain task and owned chat/tab identifiers in context.
 
-## Collect
+Use documented browser initialization; reuse known browser identity without scanning all surfaces.
+For Worker tasks, select the existing connector in Chat by verified registration ID, or
+use a verified Chat launch URL. Mentioning a connector in prose does not select it.
+Import helpers once per runtime (again after reset/resume); allow 60 seconds per helper call:
 
-Use result acceptance, never continuous supervision. Delegate implementation and its relevant
-tests together; request a concise result with changed files, check results, existing evidence paths and
-remaining issues. Leave execution to WebGPT.
+```js
+var {dispatch, deleteAndClose} = await import('<skill>/scripts/browser.mjs');
+var sent = await dispatch(tab, prompt, 'xh', {
+  startup: {connectorName, authorizeConversation: true}
+});
+```
 
-Wait for the saved completion event. Between events, do not inspect chats, screenshots, logs,
-files or processes to track progress. Only when the worker returns `backupDue` (every **20 minutes**
-for unfinished work), Codex makes one minimal chat-status check, not a progress audit or timeout.
-The worker times the check; it does not read the browser. An explicit help/failure signal
-or user intervention permits targeted handling, not continuous monitoring.
-Keep empty wait renewals inside the runtime where supported; return to the model only for an
-event, a due backup check or an actionable error. Do not narrate unchanged waiting.
-Waiting requires an active parent runtime; this skill supplies no after-exit wake-up or cron job.
+Modes: `xh|xhigh` = Extra High (default), `h|high` = High, `m|medium` = Medium
+(UI may label this Standard/표준), `p|pro` = Pro. Pass any of these aliases to `dispatch`.
+Omit `startup` for browser-only work. The helper verifies mode, sends once and checks startup.
+Choose **Always allow / 항상 허용** for authorized WebGPT permission prompts whenever offered;
+this is the helper default. Only an explicit narrower user request uses
+`permissionScope:'conversation'`. Preserve unrelated permissions and runtime gates.
 
-At completion, review the saved result once against the requested outcome. Reuse existing
-evidence rather than creating duplicate reports; load only the summary, relevant diff and evidence,
-not entire transcripts or logs. Distinguish PASS/FAIL/NOT_RUN; use the bundled collection command
-to verify saved-result integrity and acknowledge receipt together.
-Accept supported tests on the delivered version without rerunning them. Add only targeted checks
-for failures, missing or conflicting evidence, subsequent integration changes, or an explicit
-user/project requirement. Do not independently redo WebGPT's investigation or implementation.
-A completion claim alone is not evidence. Resolve a concrete gap narrowly; otherwise acknowledge
-and clean up. Preserve partial results and report blockers honestly.
+On `submitted`, reuse the returned URL and wait. Permission selections or `not_observed` do not
+prove terminal readiness; do not poll startup. On `submission_unconfirmed`, inspect the existing
+user turn without resending. Resolve other actionable states via recovery.md.
+Emit only relevant evidence, not full AX trees/exports or unnecessary screenshots. If helper
+imports are unavailable, use documented CUA; do not read helper source during normal operation.
 
-The worker retires finished deadlines independently of Codex cleanup. Cancel abandoned tasks;
-remove collected IDs from the next wait. Reconcile pending tasks after a context resume.
+## Wait, review, close
 
-## Close
+Use `client.mjs finish <ids>` for quiet waiting, verified result text and collection in one call;
+do not repeat status/read/collect. Do separately assigned Codex work after verified submission.
+Without requested monitoring, inspect progress only for a due backup or explicit help/failure.
+On `backupDue`, read recovery.md: one scoped chat check, then `resume <id>`, not another `finish`.
+Waiting requires a live parent runtime; it cannot wake exited Codex.
 
-After preserving and accepting or rejecting the result (no separate report required):
+Review once against the outcome and relevant diff/evidence. Hash integrity is not correctness.
+Do not reread the returned artifact or rerun reported passing tests on the delivered version
+unless evidence is missing/conflicting, failures or integration changes need checks, or the user
+requests verification. Distinguish PASS/FAIL/NOT_RUN. A `partial` result
+needs continuation; a `cleanupError` needs recovery. Do not duplicate WebGPT's investigation.
 
-- Task-chat cleanup is already authorized by the user's WebGPT request. Permanently delete the
-  exact task chats, accept their matching deletion dialogs, then close their task tabs without
-  asking the user again. A site's deletion dialog is an action to perform, not a new consent request.
-  This applies to delegated tasks and setup tests, never user-controlled `webgpt open` chats.
-- Verify chat deletion, then close and verify removal of all task-owned tabs, including recovery
-  duplicates. Closing a tab is not proof of deleting its chat.
-- Batch grounded menu/delete/dialog actions, deletion verification, tab closure and absence
-  verification in one call when supported. Keep intermediate state checks inside that call and
-  return only the final outcome. Resolve unknown controls with fresh observations; do not close
-  before deletion is verified.
-- Preserve unrelated chats, tabs, user data and shared services. Never delete uncollected work.
-- Perform cleanup without unnecessary delays or repeated observations. If blocked, retain exact
-  chat/tab identifiers and report the remaining action; do not claim cleanup complete.
-
-For workflow smoke tests, use a trivial operation that executes in about one second, such as
-printing a value. Do not assign development, research, or a test suite merely to test delegation.
-Model, browser and network latency are separate and cannot be promised to finish in one second.
+After preserving/reviewing results, call `deleteAndClose(tab, cua, browserId, ownedChatUrl)`.
+**Permanently delete the exact owned task chat, verify deletion, close its tab and verify absence.**
+This cleanup is already authorized: do not ask again due to permanence, generic confirmation
+notices or a new CLI session. Honor explicit retention; never delete `open` chats, uncollected work
+or unrelated chats. Keep the connector, Worker and tunnel for reuse. Actual tool rejection or a
+user-requested cleanup pause routes to recovery.md; tab closure alone never proves deletion.
