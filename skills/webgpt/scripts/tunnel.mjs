@@ -1,9 +1,11 @@
 import {spawn} from 'node:child_process';
 import {mkdirSync,writeFileSync,renameSync,unlinkSync,realpathSync,readFileSync} from 'node:fs';
+import {hostname} from 'node:os';
 import {isAbsolute,join} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {randomUUID} from 'node:crypto';
 import {configuration} from './client.mjs';
+import {acquireTunnelLock} from './lock.mjs';
 
 // Keep logs private and bounded. Require a complete delimited origin, not a URL
 // prefix followed by a path, port, query, userinfo or another domain suffix.
@@ -43,14 +45,16 @@ export function saveTunnelState(dataDir,state) {
 // No shell interpolation or publicOrigin mutation. The caller owns this wrapper
 // and its child, and installs its own signal handlers around stop().
 export function startTunnel(binary,config=configuration(),{
-  spawnChild=spawn,pid=process.pid,graceMs=3000,killWaitMs=1000,onState=()=>{},
+  spawnChild=spawn,pid=process.pid,graceMs=3000,killWaitMs=1000,onState=()=>{},lockProbe,
 }={}) {
   if(typeof binary!=='string'||!isAbsolute(binary))throw Error('cloudflared path must be absolute');
   if(!Number.isInteger(graceMs)||graceMs<0||!Number.isInteger(killWaitMs)||killWaitMs<0)throw Error('invalid shutdown bounds');
   mkdirSync(config.dataDir,{recursive:true,mode:0o700});
   const lock=join(config.dataDir,'tunnel.lock');
-  const owner=JSON.stringify({pid,nonce:randomUUID()});
-  try {writeFileSync(lock,owner,{mode:0o600,flag:'wx'});}
+  const owner=JSON.stringify({pid,nonce:randomUUID(),host:hostname()});
+  // Replaces only a provably stale lock (wrapper and child gone, or previous boot); see lock.mjs.
+  let recoveredLock;
+  try {recoveredLock=acquireTunnelLock(lock,owner,lockProbe);}
   catch(error) {
     if(error.code==='EEXIST')throw Error('tunnel owner lock exists; inspect the owner before removing a stale lock');
     throw error;
@@ -77,8 +81,8 @@ export function startTunnel(binary,config=configuration(),{
   };
   try {publish('starting');} catch(error) {release();throw error;} // Clear stale origins before starting.
   try {
-    child=spawnChild(binary,['tunnel','--url',`http://127.0.0.1:${config.mcpPort}`],{shell:false,stdio:['ignore','pipe','pipe']});
-  } catch {finish({error:'tunnel launch failed'});return {done,stop:()=>done};}
+    child=spawnChild(binary,['tunnel','--url',`http://127.0.0.1:${config.mcpPort}`],{shell:false,stdio:['ignore','pipe','pipe'],windowsHide:true});
+  } catch {finish({error:'tunnel launch failed'});return {done,stop:()=>done,...(recoveredLock?{recoveredLock}:{})};}
   const discovered=value=>{
     if(finished||stopping||origin)return;
     origin=value;
@@ -110,13 +114,14 @@ export function startTunnel(binary,config=configuration(),{
     },graceMs);
     return done;
   }
-  return {done,stop};
+  return {done,stop,...(recoveredLock?{recoveredLock}:{})};
 }
 
 if(process.argv[1]&&process.argv[1]!=='-'&&import.meta.url===pathToFileURL(realpathSync(process.argv[1])).href) {
   try {
     if(process.argv.length!==3)throw Error('usage: tunnel.mjs /absolute/cloudflared');
     const tunnel=startTunnel(process.argv[2],configuration(),{onState:state=>console.log(JSON.stringify(state))});
+    if(tunnel.recoveredLock)console.log(JSON.stringify({recoveredStaleLock:tunnel.recoveredLock}));
     const interrupt=()=>tunnel.stop('SIGINT'),terminate=()=>tunnel.stop('SIGTERM');
     process.on('SIGINT',interrupt);process.on('SIGTERM',terminate);
     const result=await tunnel.done;

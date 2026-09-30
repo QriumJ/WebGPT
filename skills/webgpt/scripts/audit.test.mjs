@@ -118,14 +118,18 @@ test('audit I/O failure emits one sanitized warning and preserves tool outcomes'
 test('terminal audit stores only execution status and output fingerprint',async t=>{
   const f=await fixture(t,{audit:true});
   const task=await f.register({id:'audit-terminal',instructions:'',inputs:{},terminal:{cwd:f.dir}});
-  const response=await f.invoke('exec_command',{token:task.token,command:"printf 'OUTPUT_PRIVATE_CANARY'",yield_ms:1000});
+  // cmd.exe has no printf, and Windows machines rarely have Git's usr/bin on PATH.
+  const command=process.platform==='win32'
+    ? `node -e "process.stdout.write('OUTPUT_PRIVATE_CANARY')"`
+    : "printf 'OUTPUT_PRIVATE_CANARY'";
+  const response=await f.invoke('exec_command',{token:task.token,command,yield_ms:1000});
   let out=response.result.structuredContent;
   while(out.running)out=(await f.invoke('write_stdin',{token:task.token,session_id:out.session_id,yield_ms:1000})).result.structuredContent;
   const completed=f.records().filter(r=>r.phase==='completed');
   assert.ok(completed.some(r=>r.outputBytes===Buffer.byteLength('OUTPUT_PRIVATE_CANARY')&&r.outputSha256===createHash('sha256').update('OUTPUT_PRIVATE_CANARY').digest('hex')));
   assert.equal(completed.at(-1).exit_code,0);assert.equal(completed.at(-1).running,false);
   const raw=readFileSync(f.log,'utf8');
-  for(const value of ['OUTPUT_PRIVATE_CANARY','printf',out.session_id,task.token,f.dir])assert.equal(raw.includes(value),false);
+  for(const value of ['OUTPUT_PRIVATE_CANARY',command,out.session_id,task.token,f.dir])assert.equal(raw.includes(value),false);
 });
 
 test('transport audit records malformed, origin-rejected and health requests without tool entry',async t=>{

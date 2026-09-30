@@ -6,6 +6,7 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { terminalGrant, Terminals } from './terminal.mjs';
 import { configuration } from './client.mjs';
+import { acquireWorkerLock } from './lock.mjs';
 
 const schema = properties => ({type:'object',properties,required:Object.keys(properties),additionalProperties:false});
 const str = {type:'string'};
@@ -39,10 +40,12 @@ function auditWriter(dir, enabled) {
     }
   };
 }
-export async function start({dir,port=43137,controlPort=43139,publicMcp=false,backupMs=1200000,idleSweepMs=60000,now=Date.now,audit=false}={}) {
+export async function start({dir,port=43137,controlPort=43139,publicMcp=false,backupMs=1200000,idleSweepMs=60000,now=Date.now,audit=false,lockProbe}={}) {
   dir=resolve(dir); mkdirSync(dir,{recursive:true,mode:0o700});
   const lock=resolve(dir,'worker.lock');
-  try{mkdirSync(lock,{mode:0o700});}catch(e){if(e.code==='EEXIST')throw Error('WebGPT data directory locked: '+lock+'; verify its owner before recovering a stale lock');throw e;}
+  // Replaces only a provably stale lock (owner exited or previous boot); see lock.mjs.
+  let recoveredLock;
+  try{recoveredLock=acquireWorkerLock(lock,lockProbe);}catch(e){if(e.code==='EEXIST')throw Error('WebGPT data directory locked: '+lock+'; verify its owner before recovering a stale lock');throw e;}
   const release=()=>{if(existsSync(resolve(lock,'owner.json')))unlinkSync(resolve(lock,'owner.json'));rmdirSync(lock);};
   try{
   writeFileSync(resolve(lock,'owner.json'),JSON.stringify({pid:process.pid,host:hostname()}),{mode:0o600});
@@ -231,12 +234,12 @@ export async function start({dir,port=43137,controlPort=43139,publicMcp=false,ba
   writeAudit({phase:'started'});
   let closed=false;
   const idleTimer=setInterval(()=>expireIdle().catch(error=>console.error('WebGPT idle cleanup:',error.message)),idleSweepMs);idleTimer.unref();
-  return {mcpPort:mcp.address().port,controlPort:control.address().port,key,expireIdle,close:async()=>{if(closed)return;closed=true;clearInterval(idleTimer);wake();await Promise.all([mcp,control].map(s=>new Promise(r=>{s.closeAllConnections();s.close(r);})));try{await terminals.stop();}finally{release();}}};
+  return {mcpPort:mcp.address().port,controlPort:control.address().port,key,expireIdle,...(recoveredLock?{recoveredLock}:{}),close:async()=>{if(closed)return;closed=true;clearInterval(idleTimer);wake();await Promise.all([mcp,control].map(s=>new Promise(r=>{s.closeAllConnections();s.close(r);})));try{await terminals.stop();}finally{release();}}};
   }catch(e){release();throw e;}
 }
 if(process.argv[1]&&process.argv[1]!=='-'&&import.meta.url===pathToFileURL(realpathSync(process.argv[1])).href){
   const config=configuration();
   const service=await start({dir:config.dataDir,port:config.mcpPort,controlPort:config.controlPort,publicMcp:config.publicMcp,audit:process.env.WEBGPT_AUDIT==='1'});
-  console.log(JSON.stringify({ready:true,mcpPort:service.mcpPort,controlPort:service.controlPort}));
+  console.log(JSON.stringify({ready:true,mcpPort:service.mcpPort,controlPort:service.controlPort,...(service.recoveredLock?{recoveredStaleLock:service.recoveredLock}:{})}));
   for(const signal of ['SIGINT','SIGTERM'])process.on(signal,()=>service.close().then(()=>process.exit(0)));
 }

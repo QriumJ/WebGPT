@@ -87,14 +87,15 @@ export class Terminals {
       child.onData(text => {session.output += text; notify();});
       child.onExit(({exitCode, signal}) => {session.done=true; session.exit_code=exitCode; session.signal=signal ?? null; session.finish(); notify();});
     } else {
-      const child = spawn(shell, args, {cwd, env:process.env, windowsVerbatimArguments:cmdShell, detached:process.platform !== 'win32', stdio:'pipe'});
+      // windowsHide keeps each command from opening a console window when the Worker has none.
+      const child = spawn(shell, args, {cwd, env:process.env, windowsVerbatimArguments:cmdShell, detached:process.platform !== 'win32', stdio:'pipe', windowsHide:true});
       session.pid = child.pid;
       session.write = text => child.stdin.write(text);
       session.kill = signal => {
         if (!child.pid) return;
         // Killing cmd.exe alone leaves its command alive and its pipes open on Windows.
         if (process.platform === 'win32') {
-          const killer=spawn('taskkill.exe',['/PID',String(child.pid),'/T','/F'],{stdio:'ignore'});
+          const killer=spawn('taskkill.exe',['/PID',String(child.pid),'/T','/F'],{stdio:'ignore',windowsHide:true});
           killer.on('error',()=>child.kill(signal));
         }
         else { try { process.kill(-child.pid, signal); } catch(e) { if(e.code !== 'ESRCH') throw e; } }

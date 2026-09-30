@@ -53,14 +53,19 @@ normal use must not search setup logs for URLs.
 Check port ownership; do not displace another process. Start
 `node <installed-skill>/scripts/worker.mjs`; verify ready output, MCP `/health`, and
 `node <installed-skill>/scripts/client.mjs status`. Use the OS service manager for persistence
-after Codex exits and record the owned service. Keep the same data directory. Before recovering
-`worker.lock/owner.json`, verify its host/PID is no longer using that directory.
+after Codex exits, restart after unexpected exits, and record the owned service. Keep the same
+data directory. The Worker replaces a provably stale lock itself (same host with an exited owner
+PID, or written before this boot). If startup still reports a locked data directory, verify
+before recovering `worker.lock/owner.json` that its host/PID is no longer using that directory.
 
 Persist an explicit Worker service `PATH` from the installation environment where `node` and
 `npm` actually run. Preserve its ordering and include their resolved executable directories;
 do not assume launchd/systemd inherits the interactive shell's PATH, hardcode Homebrew paths,
 or source shell startup files on every task. On macOS use the owned launchd plist's
 `EnvironmentVariables.PATH`; use the equivalent service environment on other platforms.
+On Windows a hidden logon Task Scheduler launcher works; let `cmd.exe`, not PowerShell, redirect
+service output, because Windows PowerShell 5.1 under `$ErrorActionPreference='Stop'` stops the
+launcher and its Worker at the first stderr line.
 For an existing idle Worker, update only its service environment and restart only that Worker;
 keep the tunnel, connector, keys and data. Verify through a Worker terminal command without
 an inline PATH override, not just through Codex's terminal. Record this check in `setup.json`.
@@ -101,11 +106,12 @@ normal-path command, network probe or Plugins visit is needed. `connection_needs
 its observed origin differs from the verified Worker connector; `tunnel_unavailable` or
 `tunnel_state_invalid` requires inspecting only the owned service first. Do not delete the state
 file or change `publicOrigin` merely to silence a guard. This local check detects observed lifecycle
-changes, not every remote outage. An `owner lock exists` error means Codex must inspect the owned
-`tunnel.lock` PID and service/child processes; remove a stale lock only after confirming its wrapper
-and child are gone, then restart the owned service. Never delete a live or uncertain lock or ask the
-user to run this maintenance manually. Legacy/custom forwarders without the state file retain their
-existing recovery behavior.
+changes, not every remote outage. The wrapper replaces a provably stale lock itself (wrapper exited
+and, on Windows, no surviving child; or written before this boot). A remaining `owner lock exists`
+error means Codex must inspect the owned `tunnel.lock` PID and service/child processes; remove a
+stale lock only after confirming its wrapper and child are gone, then restart the owned service.
+Never delete a live or uncertain lock or ask the user to run this maintenance manually.
+Legacy/custom forwarders without the state file retain their existing recovery behavior.
 
 On an actual origin change, read `tunnel.json` and the saved `setup.json` once. Preserve the worker,
 keys and active tasks. Update only the identified Worker registration's URL through documented UI,

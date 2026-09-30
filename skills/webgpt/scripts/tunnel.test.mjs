@@ -2,10 +2,13 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {EventEmitter} from 'node:events';
 import {PassThrough} from 'node:stream';
-import {mkdtempSync,readFileSync,writeFileSync,statSync,rmSync,readdirSync} from 'node:fs';
-import {tmpdir} from 'node:os';
+import {mkdtempSync,readFileSync,writeFileSync,statSync,rmSync,readdirSync,existsSync,utimesSync} from 'node:fs';
+import {tmpdir,hostname} from 'node:os';
 import {join} from 'node:path';
 import {originParser,startTunnel} from './tunnel.mjs';
+
+// Deterministic lock evidence: booted an hour ago, owner exited, child list unknown.
+const probe=overrides=>({host:hostname(),pid:process.pid,now:Date.now(),boot:Date.now()-3600000,alive:()=>false,children:()=>null,...overrides});
 
 function fixture() {
   const dataDir=mkdtempSync(join(tmpdir(),'webgpt-tunnel-'));
@@ -47,7 +50,7 @@ test('lifecycle clears stale origin, publishes private running state and never c
     const original=readFileSync(configPath,'utf8');const calls=[],states=[];
     const tunnel=startTunnel('/fake/cloudflared',f.config,{pid:123,spawnChild:(...args)=>{calls.push(args);return f.child;},onState:value=>states.push(value)});
     assert.deepEqual(f.state(),{version:1,status:'starting',pid:123});
-    assert.deepEqual(calls,[['/fake/cloudflared',['tunnel','--url','http://127.0.0.1:43137'],{shell:false,stdio:['ignore','pipe','pipe']}] ]);
+    assert.deepEqual(calls,[['/fake/cloudflared',['tunnel','--url','http://127.0.0.1:43137'],{shell:false,stdio:['ignore','pipe','pipe'],windowsHide:true}] ]);
     f.child.stdout.write('irrelevant secret log\n');
     f.child.stderr.write('INF | https://fresh-');f.child.stderr.write('origin.trycloudflare.com |\n');
     assert.deepEqual(f.state(),{version:1,status:'running',origin:'https://fresh-origin.trycloudflare.com',pid:123});
@@ -101,7 +104,7 @@ test('unresponsive child shutdown escalates and settles within bounded time',asy
 });
 
 
-test('exclusive ownership rejects live and stale locks before spawning or changing state',async()=>{
+test('exclusive ownership rejects live and unprovably stale locks before spawning or changing state',async()=>{
   const f=fixture();
   try {
     let spawns=0;
@@ -113,8 +116,43 @@ test('exclusive ownership rejects live and stale locks before spawning or changi
     assert.equal(spawns,1);assert.equal(readFileSync(join(f.dataDir,'tunnel.json'),'utf8'),current);
     f.child.emit('exit',0,null);await tunnel.done;
     assert.equal(readdirSync(f.dataDir).includes('tunnel.lock'),false);
-    writeFileSync(join(f.dataDir,'tunnel.lock'),JSON.stringify({pid:999999999,nonce:'stale'}));
-    assert.throws(()=>startTunnel('/fake/cloudflared',f.config,{spawnChild}),/owner lock exists/);
+    // A dead wrapper alone is not proof: cloudflared may have survived an unconfirmed shutdown.
+    const lock=join(f.dataDir,'tunnel.lock'),day=86400000;
+    for(const [record,age,lockProbe] of [
+      [{pid:999999999,nonce:'stale'},0,()=>probe()],
+      [{pid:999999999,nonce:'stale'},0,()=>probe({children:()=>1})],
+      [{pid:999999999,nonce:'stale'},day,()=>probe({children:()=>1})],
+      [{pid:999999999,nonce:'stale'},day,()=>probe({alive:()=>true})],
+      [{pid:999999999,nonce:'stale',host:'elsewhere'},day,()=>probe({children:()=>0})],
+    ]) {
+      writeFileSync(lock,JSON.stringify(record));
+      if(age){const past=new Date(Date.now()-age);utimesSync(lock,past,past);}
+      assert.throws(()=>startTunnel('/fake/cloudflared',f.config,{spawnChild,lockProbe}),/owner lock exists/);
+      assert.deepEqual(JSON.parse(readFileSync(lock,'utf8')),record);
+    }
     assert.equal(spawns,1);assert.equal(f.state().status,'stopped');
+    assert.equal(readdirSync(f.dataDir).some(name=>name.includes('.stale-')),false);
   } finally {f.cleanup();}
+});
+
+test('a lock whose wrapper and child are gone, or that predates this boot, is replaced once and reported',async()=>{
+  for(const [age,lockProbe,reason] of [
+    [0,()=>probe({children:()=>0}),'owner_exited'],
+    [86400000,()=>probe(),'previous_boot'],
+  ]) {
+    const f=fixture();
+    try {
+      const lock=join(f.dataDir,'tunnel.lock');
+      writeFileSync(lock,JSON.stringify({pid:999999999,nonce:'stale'}));
+      if(age){const past=new Date(Date.now()-age);utimesSync(lock,past,past);}
+      let spawns=0;
+      const tunnel=startTunnel('/fake/cloudflared',f.config,{spawnChild:()=>{spawns++;return f.child;},lockProbe});
+      assert.equal(tunnel.recoveredLock,reason);assert.equal(spawns,1);assert.equal(f.state().status,'starting');
+      const owner=JSON.parse(readFileSync(lock,'utf8'));
+      assert.equal(owner.pid,process.pid);assert.equal(owner.host,hostname());
+      assert.equal(readdirSync(f.dataDir).some(name=>name.includes('.stale-')),false);
+      f.child.emit('exit',0,null);await tunnel.done;
+      assert.equal(existsSync(lock),false);
+    } finally {f.cleanup();}
+  }
 });
